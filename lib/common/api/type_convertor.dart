@@ -10,12 +10,12 @@ class TypeConverter extends JsonConverter {
   @override
   Response<BodyType> convertResponse<BodyType, InnerType>(Response response) {
     return response.copyWith(
-      body: fromJson<BodyType, InnerType>(
+      body: _fromJson<BodyType, InnerType>(
           response.body, typeToJsonFactoryMap[InnerType]),
     );
   }
 
-  T fromJson<T, InnerType>(String jsonData, Function jsonParser) {
+  T _fromJson<T, InnerType>(String jsonData, Function jsonParser) {
     var jsonMap = json.decode(jsonData);
 
     if (jsonMap is List) {
