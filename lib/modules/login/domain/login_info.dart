@@ -3,19 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'login_failure.dart';
 
-part 'login_input.freezed.dart';
-part 'login_input.g.dart';
+part 'login_info.freezed.dart';
+part 'login_info.g.dart';
 
 @freezed
-abstract class LoginInput implements _$LoginInput {
-  const LoginInput._();
-  const factory LoginInput({
+abstract class LoginInfo implements _$LoginInfo {
+  const LoginInfo._();
+  const factory LoginInfo({
     @required String email,
     @required String password,
-  }) = _LoginInput;
+  }) = _LoginInfo;
 
-  factory LoginInput.fromJson(Map<String, dynamic> json) =>
-      _$LoginInputFromJson(json);
+  factory LoginInfo.fromJson(Map<String, dynamic> json) =>
+      _$LoginInfoFromJson(json);
 
   static String validateEmail(String email) {
     final regex = RegExp(

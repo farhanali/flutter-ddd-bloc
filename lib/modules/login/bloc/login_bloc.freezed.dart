@@ -12,9 +12,9 @@ T _$identity<T>(T value) => value;
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
-  LoginEventSignin signin(LoginInput input) {
+  LoginEventSignin signin(LoginInfo info) {
     return LoginEventSignin(
-      input,
+      info,
     );
   }
 }
@@ -23,7 +23,7 @@ class _$LoginEventTearOff {
 const $LoginEvent = _$LoginEventTearOff();
 
 mixin _$LoginEvent {
-  LoginInput get input;
+  LoginInfo get info;
 
   $LoginEventCopyWith<LoginEvent> get copyWith;
 }
@@ -32,7 +32,9 @@ abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
-  $Res call({LoginInput input});
+  $Res call({LoginInfo info});
+
+  $LoginInfoCopyWith<$Res> get info;
 }
 
 class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
@@ -44,11 +46,21 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object input = freezed,
+    Object info = freezed,
   }) {
     return _then(_value.copyWith(
-      input: input == freezed ? _value.input : input as LoginInput,
+      info: info == freezed ? _value.info : info as LoginInfo,
     ));
+  }
+
+  @override
+  $LoginInfoCopyWith<$Res> get info {
+    if (_value.info == null) {
+      return null;
+    }
+    return $LoginInfoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value));
+    });
   }
 }
 
@@ -58,7 +70,10 @@ abstract class $LoginEventSigninCopyWith<$Res>
           LoginEventSignin value, $Res Function(LoginEventSignin) then) =
       _$LoginEventSigninCopyWithImpl<$Res>;
   @override
-  $Res call({LoginInput input});
+  $Res call({LoginInfo info});
+
+  @override
+  $LoginInfoCopyWith<$Res> get info;
 }
 
 class _$LoginEventSigninCopyWithImpl<$Res>
@@ -73,36 +88,36 @@ class _$LoginEventSigninCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object input = freezed,
+    Object info = freezed,
   }) {
     return _then(LoginEventSignin(
-      input == freezed ? _value.input : input as LoginInput,
+      info == freezed ? _value.info : info as LoginInfo,
     ));
   }
 }
 
 class _$LoginEventSignin implements LoginEventSignin {
-  const _$LoginEventSignin(this.input) : assert(input != null);
+  const _$LoginEventSignin(this.info) : assert(info != null);
 
   @override
-  final LoginInput input;
+  final LoginInfo info;
 
   @override
   String toString() {
-    return 'LoginEvent.signin(input: $input)';
+    return 'LoginEvent.signin(info: $info)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is LoginEventSignin &&
-            (identical(other.input, input) ||
-                const DeepCollectionEquality().equals(other.input, input)));
+            (identical(other.info, info) ||
+                const DeepCollectionEquality().equals(other.info, info)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(input);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
 
   @override
   $LoginEventSigninCopyWith<LoginEventSignin> get copyWith =>
@@ -110,10 +125,10 @@ class _$LoginEventSignin implements LoginEventSignin {
 }
 
 abstract class LoginEventSignin implements LoginEvent {
-  const factory LoginEventSignin(LoginInput input) = _$LoginEventSignin;
+  const factory LoginEventSignin(LoginInfo info) = _$LoginEventSignin;
 
   @override
-  LoginInput get input;
+  LoginInfo get info;
   @override
   $LoginEventSigninCopyWith<LoginEventSignin> get copyWith;
 }

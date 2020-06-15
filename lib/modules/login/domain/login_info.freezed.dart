@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
 
-part of 'login_input.dart';
+part of 'login_info.dart';
 
 // **************************************************************************
 // FreezedGenerator
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-LoginInput _$LoginInputFromJson(Map<String, dynamic> json) {
-  return _LoginInput.fromJson(json);
+LoginInfo _$LoginInfoFromJson(Map<String, dynamic> json) {
+  return _LoginInfo.fromJson(json);
 }
 
-class _$LoginInputTearOff {
-  const _$LoginInputTearOff();
+class _$LoginInfoTearOff {
+  const _$LoginInfoTearOff();
 
-  _LoginInput call({@required String email, @required String password}) {
-    return _LoginInput(
+  _LoginInfo call({@required String email, @required String password}) {
+    return _LoginInfo(
       email: email,
       password: password,
     );
@@ -24,29 +24,28 @@ class _$LoginInputTearOff {
 }
 
 // ignore: unused_element
-const $LoginInput = _$LoginInputTearOff();
+const $LoginInfo = _$LoginInfoTearOff();
 
-mixin _$LoginInput {
+mixin _$LoginInfo {
   String get email;
   String get password;
 
   Map<String, dynamic> toJson();
-  $LoginInputCopyWith<LoginInput> get copyWith;
+  $LoginInfoCopyWith<LoginInfo> get copyWith;
 }
 
-abstract class $LoginInputCopyWith<$Res> {
-  factory $LoginInputCopyWith(
-          LoginInput value, $Res Function(LoginInput) then) =
-      _$LoginInputCopyWithImpl<$Res>;
+abstract class $LoginInfoCopyWith<$Res> {
+  factory $LoginInfoCopyWith(LoginInfo value, $Res Function(LoginInfo) then) =
+      _$LoginInfoCopyWithImpl<$Res>;
   $Res call({String email, String password});
 }
 
-class _$LoginInputCopyWithImpl<$Res> implements $LoginInputCopyWith<$Res> {
-  _$LoginInputCopyWithImpl(this._value, this._then);
+class _$LoginInfoCopyWithImpl<$Res> implements $LoginInfoCopyWith<$Res> {
+  _$LoginInfoCopyWithImpl(this._value, this._then);
 
-  final LoginInput _value;
+  final LoginInfo _value;
   // ignore: unused_field
-  final $Res Function(LoginInput) _then;
+  final $Res Function(LoginInfo) _then;
 
   @override
   $Res call({
@@ -60,29 +59,28 @@ class _$LoginInputCopyWithImpl<$Res> implements $LoginInputCopyWith<$Res> {
   }
 }
 
-abstract class _$LoginInputCopyWith<$Res> implements $LoginInputCopyWith<$Res> {
-  factory _$LoginInputCopyWith(
-          _LoginInput value, $Res Function(_LoginInput) then) =
-      __$LoginInputCopyWithImpl<$Res>;
+abstract class _$LoginInfoCopyWith<$Res> implements $LoginInfoCopyWith<$Res> {
+  factory _$LoginInfoCopyWith(
+          _LoginInfo value, $Res Function(_LoginInfo) then) =
+      __$LoginInfoCopyWithImpl<$Res>;
   @override
   $Res call({String email, String password});
 }
 
-class __$LoginInputCopyWithImpl<$Res> extends _$LoginInputCopyWithImpl<$Res>
-    implements _$LoginInputCopyWith<$Res> {
-  __$LoginInputCopyWithImpl(
-      _LoginInput _value, $Res Function(_LoginInput) _then)
-      : super(_value, (v) => _then(v as _LoginInput));
+class __$LoginInfoCopyWithImpl<$Res> extends _$LoginInfoCopyWithImpl<$Res>
+    implements _$LoginInfoCopyWith<$Res> {
+  __$LoginInfoCopyWithImpl(_LoginInfo _value, $Res Function(_LoginInfo) _then)
+      : super(_value, (v) => _then(v as _LoginInfo));
 
   @override
-  _LoginInput get _value => super._value as _LoginInput;
+  _LoginInfo get _value => super._value as _LoginInfo;
 
   @override
   $Res call({
     Object email = freezed,
     Object password = freezed,
   }) {
-    return _then(_LoginInput(
+    return _then(_LoginInfo(
       email: email == freezed ? _value.email : email as String,
       password: password == freezed ? _value.password : password as String,
     ));
@@ -90,14 +88,14 @@ class __$LoginInputCopyWithImpl<$Res> extends _$LoginInputCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
-class _$_LoginInput extends _LoginInput {
-  const _$_LoginInput({@required this.email, @required this.password})
+class _$_LoginInfo extends _LoginInfo {
+  const _$_LoginInfo({@required this.email, @required this.password})
       : assert(email != null),
         assert(password != null),
         super._();
 
-  factory _$_LoginInput.fromJson(Map<String, dynamic> json) =>
-      _$_$_LoginInputFromJson(json);
+  factory _$_LoginInfo.fromJson(Map<String, dynamic> json) =>
+      _$_$_LoginInfoFromJson(json);
 
   @override
   final String email;
@@ -106,13 +104,13 @@ class _$_LoginInput extends _LoginInput {
 
   @override
   String toString() {
-    return 'LoginInput(email: $email, password: $password)';
+    return 'LoginInfo(email: $email, password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoginInput &&
+        (other is _LoginInfo &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.password, password) ||
@@ -127,27 +125,27 @@ class _$_LoginInput extends _LoginInput {
       const DeepCollectionEquality().hash(password);
 
   @override
-  _$LoginInputCopyWith<_LoginInput> get copyWith =>
-      __$LoginInputCopyWithImpl<_LoginInput>(this, _$identity);
+  _$LoginInfoCopyWith<_LoginInfo> get copyWith =>
+      __$LoginInfoCopyWithImpl<_LoginInfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LoginInputToJson(this);
+    return _$_$_LoginInfoToJson(this);
   }
 }
 
-abstract class _LoginInput extends LoginInput {
-  const _LoginInput._() : super._();
-  const factory _LoginInput(
-      {@required String email, @required String password}) = _$_LoginInput;
+abstract class _LoginInfo extends LoginInfo {
+  const _LoginInfo._() : super._();
+  const factory _LoginInfo(
+      {@required String email, @required String password}) = _$_LoginInfo;
 
-  factory _LoginInput.fromJson(Map<String, dynamic> json) =
-      _$_LoginInput.fromJson;
+  factory _LoginInfo.fromJson(Map<String, dynamic> json) =
+      _$_LoginInfo.fromJson;
 
   @override
   String get email;
   @override
   String get password;
   @override
-  _$LoginInputCopyWith<_LoginInput> get copyWith;
+  _$LoginInfoCopyWith<_LoginInfo> get copyWith;
 }

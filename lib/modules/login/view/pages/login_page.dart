@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../todos/view/pages/todo_list_page.dart';
 import '../../bloc/login_bloc.dart';
-import '../../domain/login_input.dart';
+import '../../domain/login_info.dart';
 import '../../domain/user.dart';
 
 class LoginPage extends StatefulWidget {
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       initialValue: 'farhan@mashkor.com',
       decoration: _buildDecoration('Email'),
-      validator: (value) => LoginInput.validateEmail(value),
+      validator: (value) => LoginInfo.validateEmail(value),
     );
   }
 
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
       initialValue: 'farhan123',
       obscureText: true,
       decoration: _buildDecoration('Password'),
-      validator: (value) => LoginInput.validatePassword(value),
+      validator: (value) => LoginInfo.validatePassword(value),
     );
   }
 
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLoginTap() {
-    final input = LoginInput(email: email, password: password);
+    final input = LoginInfo(email: email, password: password);
     context.bloc<LoginBloc>().add(LoginEvent.signin(input));
   }
 

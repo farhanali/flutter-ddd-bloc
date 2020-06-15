@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../domain/login_failure.dart';
-import '../domain/login_input.dart';
+import '../domain/login_info.dart';
 import '../domain/login_repository.dart';
 import '../domain/user.dart';
 import 'login_api.dart';
@@ -12,9 +12,9 @@ class LoginRepositoryImpl implements LoginRepository {
   final LoginApi _api = LoginApi.create();
 
   @override
-  Future<Either<LoginFailure, User>> login(LoginInput input) async {
+  Future<Either<LoginFailure, User>> login(LoginInfo loginInfo) async {
     try {
-      final response = await _api.login(input.toJson());
+      final response = await _api.login(loginInfo.toJson());
 
       if (response.isSuccessful) {
         User user = response.body;
