@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
 
+import '../../../common/api/type_convertor.dart';
 import '../domain/user.dart';
-import 'type_convertor.dart';
 
 part 'login_api.chopper.dart';
 
