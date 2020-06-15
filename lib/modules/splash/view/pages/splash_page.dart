@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_arch/modules/auth/bloc/auth_bloc.dart';
-import 'package:flutter_clean_arch/modules/login/view/pages/login_page.dart';
-import 'package:flutter_clean_arch/modules/todos/view/pages/todo_list_page.dart';
+
+import '../../../auth/bloc/auth_bloc.dart';
+import '../../../login/view/pages/login_page.dart';
+import '../../../todos/view/pages/todo_list_page.dart';
 
 class SplashPage extends StatelessWidget {
   @override

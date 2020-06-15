@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future _flushSuccess(String message, {int second = 2}) {
-    return FlushbarHelper.createError(
+    return FlushbarHelper.createSuccess(
       message: message,
       duration: Duration(seconds: second),
     ).show(context);
