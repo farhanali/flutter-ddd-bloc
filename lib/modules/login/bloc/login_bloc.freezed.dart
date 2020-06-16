@@ -155,12 +155,6 @@ class _$LoginStateTearOff {
       failure,
     );
   }
-
-  LoginStateInvalid invalid(LoginFailure failure) {
-    return LoginStateInvalid(
-      failure,
-    );
-  }
 }
 
 // ignore: unused_element
@@ -173,7 +167,6 @@ mixin _$LoginState {
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -181,7 +174,6 @@ mixin _$LoginState {
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -190,7 +182,6 @@ mixin _$LoginState {
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -198,7 +189,6 @@ mixin _$LoginState {
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
     @required Result orElse(),
   });
 }
@@ -257,13 +247,11 @@ class _$LoginStateInitial implements LoginStateInitial {
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return initial();
   }
 
@@ -274,7 +262,6 @@ class _$LoginStateInitial implements LoginStateInitial {
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -291,13 +278,11 @@ class _$LoginStateInitial implements LoginStateInitial {
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return initial(this);
   }
 
@@ -308,7 +293,6 @@ class _$LoginStateInitial implements LoginStateInitial {
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -363,13 +347,11 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return inProgress();
   }
 
@@ -380,7 +362,6 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -397,13 +378,11 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return inProgress(this);
   }
 
@@ -414,7 +393,6 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -502,13 +480,11 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return success(user);
   }
 
@@ -519,7 +495,6 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -536,13 +511,11 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return success(this);
   }
 
@@ -553,7 +526,6 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -644,13 +616,11 @@ class _$LoginStateFailed implements LoginStateFailed {
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return failed(failure);
   }
 
@@ -661,7 +631,6 @@ class _$LoginStateFailed implements LoginStateFailed {
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -678,13 +647,11 @@ class _$LoginStateFailed implements LoginStateFailed {
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
   }) {
     assert(initial != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    assert(invalid != null);
     return failed(this);
   }
 
@@ -695,7 +662,6 @@ class _$LoginStateFailed implements LoginStateFailed {
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -711,146 +677,4 @@ abstract class LoginStateFailed implements LoginState {
 
   LoginFailure get failure;
   $LoginStateFailedCopyWith<LoginStateFailed> get copyWith;
-}
-
-abstract class $LoginStateInvalidCopyWith<$Res> {
-  factory $LoginStateInvalidCopyWith(
-          LoginStateInvalid value, $Res Function(LoginStateInvalid) then) =
-      _$LoginStateInvalidCopyWithImpl<$Res>;
-  $Res call({LoginFailure failure});
-
-  $LoginFailureCopyWith<$Res> get failure;
-}
-
-class _$LoginStateInvalidCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoginStateInvalidCopyWith<$Res> {
-  _$LoginStateInvalidCopyWithImpl(
-      LoginStateInvalid _value, $Res Function(LoginStateInvalid) _then)
-      : super(_value, (v) => _then(v as LoginStateInvalid));
-
-  @override
-  LoginStateInvalid get _value => super._value as LoginStateInvalid;
-
-  @override
-  $Res call({
-    Object failure = freezed,
-  }) {
-    return _then(LoginStateInvalid(
-      failure == freezed ? _value.failure : failure as LoginFailure,
-    ));
-  }
-
-  @override
-  $LoginFailureCopyWith<$Res> get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-    return $LoginFailureCopyWith<$Res>(_value.failure, (value) {
-      return _then(_value.copyWith(failure: value));
-    });
-  }
-}
-
-class _$LoginStateInvalid implements LoginStateInvalid {
-  const _$LoginStateInvalid(this.failure) : assert(failure != null);
-
-  @override
-  final LoginFailure failure;
-
-  @override
-  String toString() {
-    return 'LoginState.invalid(failure: $failure)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is LoginStateInvalid &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
-
-  @override
-  $LoginStateInvalidCopyWith<LoginStateInvalid> get copyWith =>
-      _$LoginStateInvalidCopyWithImpl<LoginStateInvalid>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
-    @required Result invalid(LoginFailure failure),
-  }) {
-    assert(initial != null);
-    assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    assert(invalid != null);
-    return invalid(failure);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
-    Result invalid(LoginFailure failure),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (invalid != null) {
-      return invalid(failure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
-    @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
-    @required Result invalid(LoginStateInvalid value),
-  }) {
-    assert(initial != null);
-    assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    assert(invalid != null);
-    return invalid(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
-    Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
-    Result invalid(LoginStateInvalid value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (invalid != null) {
-      return invalid(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoginStateInvalid implements LoginState {
-  const factory LoginStateInvalid(LoginFailure failure) = _$LoginStateInvalid;
-
-  LoginFailure get failure;
-  $LoginStateInvalidCopyWith<LoginStateInvalid> get copyWith;
 }
