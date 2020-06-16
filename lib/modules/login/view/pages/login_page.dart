@@ -36,8 +36,16 @@ class _LoginPageState extends State<LoginPage> {
                   _buildEmailField(),
                   SizedBox(height: 8),
                   _buildPasswordField(),
+                  state == LoginState.initialRegister()
+                      ? SizedBox(height: 8)
+                      : SizedBox(height: 0),
+                  state == LoginState.initialRegister()
+                      ? _buildConfirmPasswordField()
+                      : SizedBox(height: 0),
                   SizedBox(height: 24),
-                  _buildLoginButton(),
+                  _buildLoginButton(state),
+                  SizedBox(height: 8),
+                  _buildRegisterButton(state),
                   SizedBox(height: 12),
                   _buildProgress(state),
                 ],
@@ -89,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       initialValue: 'farhan@mashkor.com',
-      decoration: _buildDecoration('Email'),
+      decoration: _buildDecoration('Login', 'Email'),
       validator: (value) => LoginInfo.validateEmail(value),
     );
   }
@@ -100,13 +108,25 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       initialValue: 'farhan123',
       obscureText: true,
-      decoration: _buildDecoration('Password'),
+      decoration: _buildDecoration('Password', 'Password'),
       validator: (value) => LoginInfo.validatePassword(value),
     );
   }
 
-  InputDecoration _buildDecoration(String hint) {
+  Widget _buildConfirmPasswordField() {
+    return TextFormField(
+      onChanged: (value) => password = value,
+      autofocus: false,
+      initialValue: 'farhan123',
+      obscureText: true,
+      decoration: _buildDecoration('Confirm password', 'Confirm password'),
+      validator: (value) => LoginInfo.validatePassword(value),
+    );
+  }
+
+  InputDecoration _buildDecoration(String hint, String titleLabel) {
     return InputDecoration(
+      labelText: titleLabel,
       hintText: hint,
       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       border: OutlineInputBorder(
@@ -115,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLoginButton() {
+  Widget _buildLoginButton(LoginState state) {
     return Container(
       width: 100,
       child: RaisedButton(
@@ -125,9 +145,28 @@ class _LoginPageState extends State<LoginPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        onPressed: () => _onLoginTap(),
+        onPressed: () => _onLoginTap(state),
         child: Text(
-          'Log In',
+          state == LoginState.initialLogin() ? 'Log In' : 'Sign up',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRegisterButton(LoginState state) {
+    return Container(
+      width: 100,
+      child: RaisedButton(
+        padding: EdgeInsets.all(12),
+        color: Colors.blue,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        onPressed: () => _onRegisterTap(state),
+        child: Text(
+          state == LoginState.initialLogin() ? 'Register' : 'Back to log in',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -140,9 +179,21 @@ class _LoginPageState extends State<LoginPage> {
         : Container(height: 35);
   }
 
-  void _onLoginTap() {
-    final input = LoginInfo(email: email, password: password);
-    context.bloc<LoginBloc>().add(LoginEvent.signin(input));
+  void _onLoginTap(LoginState state) {
+    if (state == LoginState.initialLogin()) {
+      final input = LoginInfo(email: email, password: password);
+      context.bloc<LoginBloc>().add(LoginEvent.signin(input));
+    } else {
+      //perform register
+    }
+  }
+
+  void _onRegisterTap(LoginState state) {
+    if (state == LoginState.initialLogin()) {
+      context.bloc<LoginBloc>().add(LoginEvent.switchToRegister());
+    } else {
+      context.bloc<LoginBloc>().add(LoginEvent.switchToLogin());
+    }
   }
 
   void _onLoginSuccess(User user) async {

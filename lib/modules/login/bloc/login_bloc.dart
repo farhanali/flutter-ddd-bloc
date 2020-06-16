@@ -23,21 +23,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._loginRepo, this._authRepo);
 
   @override
-  LoginState get initialState => LoginState.initial();
+  LoginState get initialState => LoginState.initialLogin();
 
   @override
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
-    yield* _mapSigninToState(event);
+    yield* event.when(
+      signin: (event) => _mapSigninToState(event),
+      switchToRegister: () => _switchToRegisterState(),
+      switchToLogin: () => _switchToLoginState()
+    );
   }
 
-  Stream<LoginState> _mapSigninToState(LoginEvent event) async* {
+  Stream<LoginState> _mapSigninToState(LoginInfo loginInfo) async* {
     yield const LoginState.inProgress();
 
-    LoginInfo info = event.info;
-    yield* info.validate().fold(
-          () => _doLogin(info),
+    yield* loginInfo.validate().fold(
+          () => _doLogin(loginInfo),
           (failure) => _validationFailed(failure),
         );
   }
@@ -52,6 +55,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         return LoginState.success(user);
       },
     );
+  }
+
+  Stream<LoginState> _switchToRegisterState() async* {
+    yield LoginState.initialRegister();
+  }
+
+    Stream<LoginState> _switchToLoginState() async* {
+    yield LoginState.initialLogin();
   }
 
   Stream<LoginState> _validationFailed(LoginFailure failure) async* {

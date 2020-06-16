@@ -17,24 +17,52 @@ class _$LoginEventTearOff {
       info,
     );
   }
+
+  LoginEventSwitchToRegister switchToRegister() {
+    return const LoginEventSwitchToRegister();
+  }
+
+  LoginEventSwitchToLogin switchToLogin() {
+    return const LoginEventSwitchToLogin();
+  }
 }
 
 // ignore: unused_element
 const $LoginEvent = _$LoginEventTearOff();
 
 mixin _$LoginEvent {
-  LoginInfo get info;
-
-  $LoginEventCopyWith<LoginEvent> get copyWith;
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result signin(LoginInfo info),
+    @required Result switchToRegister(),
+    @required Result switchToLogin(),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result signin(LoginInfo info),
+    Result switchToRegister(),
+    Result switchToLogin(),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result signin(LoginEventSignin value),
+    @required Result switchToRegister(LoginEventSwitchToRegister value),
+    @required Result switchToLogin(LoginEventSwitchToLogin value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result signin(LoginEventSignin value),
+    Result switchToRegister(LoginEventSwitchToRegister value),
+    Result switchToLogin(LoginEventSwitchToLogin value),
+    @required Result orElse(),
+  });
 }
 
 abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
-  $Res call({LoginInfo info});
-
-  $LoginInfoCopyWith<$Res> get info;
 }
 
 class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
@@ -43,36 +71,14 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final LoginEvent _value;
   // ignore: unused_field
   final $Res Function(LoginEvent) _then;
-
-  @override
-  $Res call({
-    Object info = freezed,
-  }) {
-    return _then(_value.copyWith(
-      info: info == freezed ? _value.info : info as LoginInfo,
-    ));
-  }
-
-  @override
-  $LoginInfoCopyWith<$Res> get info {
-    if (_value.info == null) {
-      return null;
-    }
-    return $LoginInfoCopyWith<$Res>(_value.info, (value) {
-      return _then(_value.copyWith(info: value));
-    });
-  }
 }
 
-abstract class $LoginEventSigninCopyWith<$Res>
-    implements $LoginEventCopyWith<$Res> {
+abstract class $LoginEventSigninCopyWith<$Res> {
   factory $LoginEventSigninCopyWith(
           LoginEventSignin value, $Res Function(LoginEventSignin) then) =
       _$LoginEventSigninCopyWithImpl<$Res>;
-  @override
   $Res call({LoginInfo info});
 
-  @override
   $LoginInfoCopyWith<$Res> get info;
 }
 
@@ -93,6 +99,16 @@ class _$LoginEventSigninCopyWithImpl<$Res>
     return _then(LoginEventSignin(
       info == freezed ? _value.info : info as LoginInfo,
     ));
+  }
+
+  @override
+  $LoginInfoCopyWith<$Res> get info {
+    if (_value.info == null) {
+      return null;
+    }
+    return $LoginInfoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value));
+    });
   }
 }
 
@@ -122,22 +138,269 @@ class _$LoginEventSignin implements LoginEventSignin {
   @override
   $LoginEventSigninCopyWith<LoginEventSignin> get copyWith =>
       _$LoginEventSigninCopyWithImpl<LoginEventSignin>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result signin(LoginInfo info),
+    @required Result switchToRegister(),
+    @required Result switchToLogin(),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return signin(info);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result signin(LoginInfo info),
+    Result switchToRegister(),
+    Result switchToLogin(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (signin != null) {
+      return signin(info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result signin(LoginEventSignin value),
+    @required Result switchToRegister(LoginEventSwitchToRegister value),
+    @required Result switchToLogin(LoginEventSwitchToLogin value),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return signin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result signin(LoginEventSignin value),
+    Result switchToRegister(LoginEventSwitchToRegister value),
+    Result switchToLogin(LoginEventSwitchToLogin value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (signin != null) {
+      return signin(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class LoginEventSignin implements LoginEvent {
   const factory LoginEventSignin(LoginInfo info) = _$LoginEventSignin;
 
-  @override
   LoginInfo get info;
-  @override
   $LoginEventSigninCopyWith<LoginEventSignin> get copyWith;
+}
+
+abstract class $LoginEventSwitchToRegisterCopyWith<$Res> {
+  factory $LoginEventSwitchToRegisterCopyWith(LoginEventSwitchToRegister value,
+          $Res Function(LoginEventSwitchToRegister) then) =
+      _$LoginEventSwitchToRegisterCopyWithImpl<$Res>;
+}
+
+class _$LoginEventSwitchToRegisterCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginEventSwitchToRegisterCopyWith<$Res> {
+  _$LoginEventSwitchToRegisterCopyWithImpl(LoginEventSwitchToRegister _value,
+      $Res Function(LoginEventSwitchToRegister) _then)
+      : super(_value, (v) => _then(v as LoginEventSwitchToRegister));
+
+  @override
+  LoginEventSwitchToRegister get _value =>
+      super._value as LoginEventSwitchToRegister;
+}
+
+class _$LoginEventSwitchToRegister implements LoginEventSwitchToRegister {
+  const _$LoginEventSwitchToRegister();
+
+  @override
+  String toString() {
+    return 'LoginEvent.switchToRegister()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoginEventSwitchToRegister);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result signin(LoginInfo info),
+    @required Result switchToRegister(),
+    @required Result switchToLogin(),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return switchToRegister();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result signin(LoginInfo info),
+    Result switchToRegister(),
+    Result switchToLogin(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (switchToRegister != null) {
+      return switchToRegister();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result signin(LoginEventSignin value),
+    @required Result switchToRegister(LoginEventSwitchToRegister value),
+    @required Result switchToLogin(LoginEventSwitchToLogin value),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return switchToRegister(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result signin(LoginEventSignin value),
+    Result switchToRegister(LoginEventSwitchToRegister value),
+    Result switchToLogin(LoginEventSwitchToLogin value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (switchToRegister != null) {
+      return switchToRegister(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginEventSwitchToRegister implements LoginEvent {
+  const factory LoginEventSwitchToRegister() = _$LoginEventSwitchToRegister;
+}
+
+abstract class $LoginEventSwitchToLoginCopyWith<$Res> {
+  factory $LoginEventSwitchToLoginCopyWith(LoginEventSwitchToLogin value,
+          $Res Function(LoginEventSwitchToLogin) then) =
+      _$LoginEventSwitchToLoginCopyWithImpl<$Res>;
+}
+
+class _$LoginEventSwitchToLoginCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginEventSwitchToLoginCopyWith<$Res> {
+  _$LoginEventSwitchToLoginCopyWithImpl(LoginEventSwitchToLogin _value,
+      $Res Function(LoginEventSwitchToLogin) _then)
+      : super(_value, (v) => _then(v as LoginEventSwitchToLogin));
+
+  @override
+  LoginEventSwitchToLogin get _value => super._value as LoginEventSwitchToLogin;
+}
+
+class _$LoginEventSwitchToLogin implements LoginEventSwitchToLogin {
+  const _$LoginEventSwitchToLogin();
+
+  @override
+  String toString() {
+    return 'LoginEvent.switchToLogin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoginEventSwitchToLogin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result signin(LoginInfo info),
+    @required Result switchToRegister(),
+    @required Result switchToLogin(),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return switchToLogin();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result signin(LoginInfo info),
+    Result switchToRegister(),
+    Result switchToLogin(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (switchToLogin != null) {
+      return switchToLogin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result signin(LoginEventSignin value),
+    @required Result switchToRegister(LoginEventSwitchToRegister value),
+    @required Result switchToLogin(LoginEventSwitchToLogin value),
+  }) {
+    assert(signin != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return switchToLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result signin(LoginEventSignin value),
+    Result switchToRegister(LoginEventSwitchToRegister value),
+    Result switchToLogin(LoginEventSwitchToLogin value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (switchToLogin != null) {
+      return switchToLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginEventSwitchToLogin implements LoginEvent {
+  const factory LoginEventSwitchToLogin() = _$LoginEventSwitchToLogin;
 }
 
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
-  LoginStateInitial initial() {
-    return const LoginStateInitial();
+  LoginStateInitialLogin initialLogin() {
+    return const LoginStateInitialLogin();
+  }
+
+  LoginStateInitialRegister initialRegister() {
+    return const LoginStateInitialRegister();
   }
 
   LoginStateInProgress inProgress() {
@@ -163,14 +426,16 @@ const $LoginState = _$LoginStateTearOff();
 mixin _$LoginState {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initial(),
+    @required Result initialLogin(),
+    @required Result initialRegister(),
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initial(),
+    Result initialLogin(),
+    Result initialRegister(),
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
@@ -178,14 +443,16 @@ mixin _$LoginState {
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
@@ -207,34 +474,34 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   final $Res Function(LoginState) _then;
 }
 
-abstract class $LoginStateInitialCopyWith<$Res> {
-  factory $LoginStateInitialCopyWith(
-          LoginStateInitial value, $Res Function(LoginStateInitial) then) =
-      _$LoginStateInitialCopyWithImpl<$Res>;
+abstract class $LoginStateInitialLoginCopyWith<$Res> {
+  factory $LoginStateInitialLoginCopyWith(LoginStateInitialLogin value,
+          $Res Function(LoginStateInitialLogin) then) =
+      _$LoginStateInitialLoginCopyWithImpl<$Res>;
 }
 
-class _$LoginStateInitialCopyWithImpl<$Res>
+class _$LoginStateInitialLoginCopyWithImpl<$Res>
     extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoginStateInitialCopyWith<$Res> {
-  _$LoginStateInitialCopyWithImpl(
-      LoginStateInitial _value, $Res Function(LoginStateInitial) _then)
-      : super(_value, (v) => _then(v as LoginStateInitial));
+    implements $LoginStateInitialLoginCopyWith<$Res> {
+  _$LoginStateInitialLoginCopyWithImpl(LoginStateInitialLogin _value,
+      $Res Function(LoginStateInitialLogin) _then)
+      : super(_value, (v) => _then(v as LoginStateInitialLogin));
 
   @override
-  LoginStateInitial get _value => super._value as LoginStateInitial;
+  LoginStateInitialLogin get _value => super._value as LoginStateInitialLogin;
 }
 
-class _$LoginStateInitial implements LoginStateInitial {
-  const _$LoginStateInitial();
+class _$LoginStateInitialLogin implements LoginStateInitialLogin {
+  const _$LoginStateInitialLogin();
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'LoginState.initialLogin()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoginStateInitial);
+    return identical(this, other) || (other is LoginStateInitialLogin);
   }
 
   @override
@@ -243,30 +510,33 @@ class _$LoginStateInitial implements LoginStateInitial {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initial(),
+    @required Result initialLogin(),
+    @required Result initialRegister(),
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    return initial();
+    return initialLogin();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initial(),
+    Result initialLogin(),
+    Result initialRegister(),
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (initial != null) {
-      return initial();
+    if (initialLogin != null) {
+      return initialLogin();
     }
     return orElse();
   }
@@ -274,37 +544,147 @@ class _$LoginStateInitial implements LoginStateInitial {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
-    return initial(this);
+    return initialLogin(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (initial != null) {
-      return initial(this);
+    if (initialLogin != null) {
+      return initialLogin(this);
     }
     return orElse();
   }
 }
 
-abstract class LoginStateInitial implements LoginState {
-  const factory LoginStateInitial() = _$LoginStateInitial;
+abstract class LoginStateInitialLogin implements LoginState {
+  const factory LoginStateInitialLogin() = _$LoginStateInitialLogin;
+}
+
+abstract class $LoginStateInitialRegisterCopyWith<$Res> {
+  factory $LoginStateInitialRegisterCopyWith(LoginStateInitialRegister value,
+          $Res Function(LoginStateInitialRegister) then) =
+      _$LoginStateInitialRegisterCopyWithImpl<$Res>;
+}
+
+class _$LoginStateInitialRegisterCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res>
+    implements $LoginStateInitialRegisterCopyWith<$Res> {
+  _$LoginStateInitialRegisterCopyWithImpl(LoginStateInitialRegister _value,
+      $Res Function(LoginStateInitialRegister) _then)
+      : super(_value, (v) => _then(v as LoginStateInitialRegister));
+
+  @override
+  LoginStateInitialRegister get _value =>
+      super._value as LoginStateInitialRegister;
+}
+
+class _$LoginStateInitialRegister implements LoginStateInitialRegister {
+  const _$LoginStateInitialRegister();
+
+  @override
+  String toString() {
+    return 'LoginState.initialRegister()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoginStateInitialRegister);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialLogin(),
+    @required Result initialRegister(),
+    @required Result inProgress(),
+    @required Result success(User user),
+    @required Result failed(LoginFailure failure),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(success != null);
+    assert(failed != null);
+    return initialRegister();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialLogin(),
+    Result initialRegister(),
+    Result inProgress(),
+    Result success(User user),
+    Result failed(LoginFailure failure),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (initialRegister != null) {
+      return initialRegister();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
+    @required Result inProgress(LoginStateInProgress value),
+    @required Result success(LoginStateSuccess value),
+    @required Result failed(LoginStateFailed value),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(success != null);
+    assert(failed != null);
+    return initialRegister(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
+    Result inProgress(LoginStateInProgress value),
+    Result success(LoginStateSuccess value),
+    Result failed(LoginStateFailed value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (initialRegister != null) {
+      return initialRegister(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginStateInitialRegister implements LoginState {
+  const factory LoginStateInitialRegister() = _$LoginStateInitialRegister;
 }
 
 abstract class $LoginStateInProgressCopyWith<$Res> {
@@ -343,12 +723,14 @@ class _$LoginStateInProgress implements LoginStateInProgress {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initial(),
+    @required Result initialLogin(),
+    @required Result initialRegister(),
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -358,7 +740,8 @@ class _$LoginStateInProgress implements LoginStateInProgress {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initial(),
+    Result initialLogin(),
+    Result initialRegister(),
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
@@ -374,12 +757,14 @@ class _$LoginStateInProgress implements LoginStateInProgress {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -389,7 +774,8 @@ class _$LoginStateInProgress implements LoginStateInProgress {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
@@ -476,12 +862,14 @@ class _$LoginStateSuccess implements LoginStateSuccess {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initial(),
+    @required Result initialLogin(),
+    @required Result initialRegister(),
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -491,7 +879,8 @@ class _$LoginStateSuccess implements LoginStateSuccess {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initial(),
+    Result initialLogin(),
+    Result initialRegister(),
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
@@ -507,12 +896,14 @@ class _$LoginStateSuccess implements LoginStateSuccess {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -522,7 +913,8 @@ class _$LoginStateSuccess implements LoginStateSuccess {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
@@ -612,12 +1004,14 @@ class _$LoginStateFailed implements LoginStateFailed {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initial(),
+    @required Result initialLogin(),
+    @required Result initialRegister(),
     @required Result inProgress(),
     @required Result success(User user),
     @required Result failed(LoginFailure failure),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -627,7 +1021,8 @@ class _$LoginStateFailed implements LoginStateFailed {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initial(),
+    Result initialLogin(),
+    Result initialRegister(),
     Result inProgress(),
     Result success(User user),
     Result failed(LoginFailure failure),
@@ -643,12 +1038,14 @@ class _$LoginStateFailed implements LoginStateFailed {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result initial(LoginStateInitial value),
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
     @required Result success(LoginStateSuccess value),
     @required Result failed(LoginStateFailed value),
   }) {
-    assert(initial != null);
+    assert(initialLogin != null);
+    assert(initialRegister != null);
     assert(inProgress != null);
     assert(success != null);
     assert(failed != null);
@@ -658,7 +1055,8 @@ class _$LoginStateFailed implements LoginStateFailed {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result initial(LoginStateInitial value),
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
     Result success(LoginStateSuccess value),
     Result failed(LoginStateFailed value),
