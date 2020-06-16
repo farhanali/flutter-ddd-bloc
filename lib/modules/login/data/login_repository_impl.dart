@@ -27,7 +27,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
       switch (code) {
         case 401:
-          return left(LoginFailure.invalidLogin("Unauthenticated"));
+          return left(LoginFailure.invalidLogin('Unauthenticated'));
         case 500:
           return left(LoginFailure.serverError());
       }

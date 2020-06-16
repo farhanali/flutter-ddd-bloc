@@ -19,9 +19,9 @@ class _TodoListPageState extends State<TodoListPage>
   TodoList todoList = TodoList(
     title: "My Todo's",
     todos: [
-      Todo(id: 1, name: "Complete todo app", done: false),
-      Todo(id: 2, name: "Do testing", done: false),
-      Todo(id: 1, name: "Deploy app", done: true),
+      Todo(id: 1, name: 'Complete todo app', done: false),
+      Todo(id: 2, name: 'Do testing', done: false),
+      Todo(id: 1, name: 'Deploy app', done: true),
     ],
   );
 
@@ -81,8 +81,8 @@ class _TodoListPageState extends State<TodoListPage>
         itemBuilder: (BuildContext context) {
           return [
             PopupMenuItem<String>(
-              value: "Logout",
-              child: Text("Logout"),
+              value: 'Logout',
+              child: Text('Logout'),
             ),
           ];
         },
@@ -131,7 +131,7 @@ class _TodoListPageState extends State<TodoListPage>
       done: false,
     ));
 
-    newTodoController.text = "";
+    newTodoController.text = '';
     scrollController.animateTo(
       scrollController.position.maxScrollExtent,
       duration: Duration(milliseconds: 300),
@@ -147,7 +147,7 @@ class _TodoListPageState extends State<TodoListPage>
 
   void _onLogoutSuccess() async {
     await FlushbarHelper.createSuccess(
-      message: "Logout success",
+      message: 'Logout success',
       duration: const Duration(seconds: 1),
     ).show(context);
     Navigator.of(context)

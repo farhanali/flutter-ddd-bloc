@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   void _listenBlocEvents(BuildContext context, LoginState state) {
     state.maybeWhen(
       success: (user) => _onLoginSuccess(user),
-      failed: (failure) => _flushError("Login failed: $failure"),
+      failed: (failure) => _flushError('Login failed: $failure'),
       orElse: () {}, // nothing specific todo
     );
   }
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildTitle() {
     return Text(
-      "Login todo!",
+      'Login todo!',
       style: TextStyle(fontSize: 40),
     );
   }
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLoginSuccess(User user) async {
-    await _flushSuccess("Welcom ${user.name}", second: 1);
+    await _flushSuccess('Welcom ${user.name}', second: 1);
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => TodoListPage()));
   }

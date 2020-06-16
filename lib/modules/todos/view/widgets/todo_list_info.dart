@@ -37,8 +37,8 @@ class TodoListInfo extends StatelessWidget {
         builder: (BuildContext context, AuthState state) {
           String text = state.maybeWhen(
             user: (user) =>
-                "Hello ${user.name},\n\nYou have ${todoList.todos.length} todos in your list",
-            orElse: () => "Logging out..",
+                'Hello ${user.name},\n\nYou have ${todoList.todos.length} todos in your list',
+            orElse: () => 'Logging out..',
           );
 
           return Text(

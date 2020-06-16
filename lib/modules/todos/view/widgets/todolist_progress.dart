@@ -23,7 +23,7 @@ class TodoListProgress extends StatelessWidget {
             ),
           ),
           SizedBox(width: 15.0),
-          Text("${(progress * 100).toInt()}%"),
+          Text('${(progress * 100).toInt()}%'),
         ],
       ),
     );
