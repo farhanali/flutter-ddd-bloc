@@ -407,14 +407,26 @@ class _$LoginStateTearOff {
     return const LoginStateInProgress();
   }
 
-  LoginStateSuccess success(User user) {
+  LoginStateSuccess loginSuccess(User user) {
     return LoginStateSuccess(
       user,
     );
   }
 
-  LoginStateFailed failed(LoginFailure failure) {
+  LoginStateFailed loginFailed(LoginFailure failure) {
     return LoginStateFailed(
+      failure,
+    );
+  }
+
+  RegisterStateSuccess registerSuccess(User user) {
+    return RegisterStateSuccess(
+      user,
+    );
+  }
+
+  RegisterStateFailed registerFailed(RegisterFailure failure) {
+    return RegisterStateFailed(
       failure,
     );
   }
@@ -429,16 +441,20 @@ mixin _$LoginState {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -446,16 +462,20 @@ mixin _$LoginState {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   });
 }
@@ -513,14 +533,18 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return initialLogin();
   }
 
@@ -530,8 +554,10 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -547,14 +573,18 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return initialLogin(this);
   }
 
@@ -564,8 +594,10 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -620,14 +652,18 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return initialRegister();
   }
 
@@ -637,8 +673,10 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -654,14 +692,18 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return initialRegister(this);
   }
 
@@ -671,8 +713,10 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -726,14 +770,18 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return inProgress();
   }
 
@@ -743,8 +791,10 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -760,14 +810,18 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
     return inProgress(this);
   }
 
@@ -777,8 +831,10 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -840,7 +896,7 @@ class _$LoginStateSuccess implements LoginStateSuccess {
 
   @override
   String toString() {
-    return 'LoginState.success(user: $user)';
+    return 'LoginState.loginSuccess(user: $user)';
   }
 
   @override
@@ -865,15 +921,19 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    return success(user);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return loginSuccess(user);
   }
 
   @override
@@ -882,13 +942,15 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (success != null) {
-      return success(user);
+    if (loginSuccess != null) {
+      return loginSuccess(user);
     }
     return orElse();
   }
@@ -899,15 +961,19 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    return success(this);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return loginSuccess(this);
   }
 
   @override
@@ -916,13 +982,15 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (success != null) {
-      return success(this);
+    if (loginSuccess != null) {
+      return loginSuccess(this);
     }
     return orElse();
   }
@@ -982,7 +1050,7 @@ class _$LoginStateFailed implements LoginStateFailed {
 
   @override
   String toString() {
-    return 'LoginState.failed(failure: $failure)';
+    return 'LoginState.loginFailed(failure: $failure)';
   }
 
   @override
@@ -1007,15 +1075,19 @@ class _$LoginStateFailed implements LoginStateFailed {
     @required Result initialLogin(),
     @required Result initialRegister(),
     @required Result inProgress(),
-    @required Result success(User user),
-    @required Result failed(LoginFailure failure),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    return failed(failure);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return loginFailed(failure);
   }
 
   @override
@@ -1024,13 +1096,15 @@ class _$LoginStateFailed implements LoginStateFailed {
     Result initialLogin(),
     Result initialRegister(),
     Result inProgress(),
-    Result success(User user),
-    Result failed(LoginFailure failure),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (failed != null) {
-      return failed(failure);
+    if (loginFailed != null) {
+      return loginFailed(failure);
     }
     return orElse();
   }
@@ -1041,15 +1115,19 @@ class _$LoginStateFailed implements LoginStateFailed {
     @required Result initialLogin(LoginStateInitialLogin value),
     @required Result initialRegister(LoginStateInitialRegister value),
     @required Result inProgress(LoginStateInProgress value),
-    @required Result success(LoginStateSuccess value),
-    @required Result failed(LoginStateFailed value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
   }) {
     assert(initialLogin != null);
     assert(initialRegister != null);
     assert(inProgress != null);
-    assert(success != null);
-    assert(failed != null);
-    return failed(this);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return loginFailed(this);
   }
 
   @override
@@ -1058,13 +1136,15 @@ class _$LoginStateFailed implements LoginStateFailed {
     Result initialLogin(LoginStateInitialLogin value),
     Result initialRegister(LoginStateInitialRegister value),
     Result inProgress(LoginStateInProgress value),
-    Result success(LoginStateSuccess value),
-    Result failed(LoginStateFailed value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (failed != null) {
-      return failed(this);
+    if (loginFailed != null) {
+      return loginFailed(this);
     }
     return orElse();
   }
@@ -1075,4 +1155,314 @@ abstract class LoginStateFailed implements LoginState {
 
   LoginFailure get failure;
   $LoginStateFailedCopyWith<LoginStateFailed> get copyWith;
+}
+
+abstract class $RegisterStateSuccessCopyWith<$Res> {
+  factory $RegisterStateSuccessCopyWith(RegisterStateSuccess value,
+          $Res Function(RegisterStateSuccess) then) =
+      _$RegisterStateSuccessCopyWithImpl<$Res>;
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+class _$RegisterStateSuccessCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res>
+    implements $RegisterStateSuccessCopyWith<$Res> {
+  _$RegisterStateSuccessCopyWithImpl(
+      RegisterStateSuccess _value, $Res Function(RegisterStateSuccess) _then)
+      : super(_value, (v) => _then(v as RegisterStateSuccess));
+
+  @override
+  RegisterStateSuccess get _value => super._value as RegisterStateSuccess;
+
+  @override
+  $Res call({
+    Object user = freezed,
+  }) {
+    return _then(RegisterStateSuccess(
+      user == freezed ? _value.user : user as User,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    if (_value.user == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+class _$RegisterStateSuccess implements RegisterStateSuccess {
+  const _$RegisterStateSuccess(this.user) : assert(user != null);
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'LoginState.registerSuccess(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RegisterStateSuccess &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+
+  @override
+  $RegisterStateSuccessCopyWith<RegisterStateSuccess> get copyWith =>
+      _$RegisterStateSuccessCopyWithImpl<RegisterStateSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialLogin(),
+    @required Result initialRegister(),
+    @required Result inProgress(),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return registerSuccess(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialLogin(),
+    Result initialRegister(),
+    Result inProgress(),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerSuccess != null) {
+      return registerSuccess(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
+    @required Result inProgress(LoginStateInProgress value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return registerSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
+    Result inProgress(LoginStateInProgress value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerSuccess != null) {
+      return registerSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterStateSuccess implements LoginState {
+  const factory RegisterStateSuccess(User user) = _$RegisterStateSuccess;
+
+  User get user;
+  $RegisterStateSuccessCopyWith<RegisterStateSuccess> get copyWith;
+}
+
+abstract class $RegisterStateFailedCopyWith<$Res> {
+  factory $RegisterStateFailedCopyWith(
+          RegisterStateFailed value, $Res Function(RegisterStateFailed) then) =
+      _$RegisterStateFailedCopyWithImpl<$Res>;
+  $Res call({RegisterFailure failure});
+
+  $RegisterFailureCopyWith<$Res> get failure;
+}
+
+class _$RegisterStateFailedCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res>
+    implements $RegisterStateFailedCopyWith<$Res> {
+  _$RegisterStateFailedCopyWithImpl(
+      RegisterStateFailed _value, $Res Function(RegisterStateFailed) _then)
+      : super(_value, (v) => _then(v as RegisterStateFailed));
+
+  @override
+  RegisterStateFailed get _value => super._value as RegisterStateFailed;
+
+  @override
+  $Res call({
+    Object failure = freezed,
+  }) {
+    return _then(RegisterStateFailed(
+      failure == freezed ? _value.failure : failure as RegisterFailure,
+    ));
+  }
+
+  @override
+  $RegisterFailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $RegisterFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+class _$RegisterStateFailed implements RegisterStateFailed {
+  const _$RegisterStateFailed(this.failure) : assert(failure != null);
+
+  @override
+  final RegisterFailure failure;
+
+  @override
+  String toString() {
+    return 'LoginState.registerFailed(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RegisterStateFailed &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @override
+  $RegisterStateFailedCopyWith<RegisterStateFailed> get copyWith =>
+      _$RegisterStateFailedCopyWithImpl<RegisterStateFailed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialLogin(),
+    @required Result initialRegister(),
+    @required Result inProgress(),
+    @required Result loginSuccess(User user),
+    @required Result loginFailed(LoginFailure failure),
+    @required Result registerSuccess(User user),
+    @required Result registerFailed(RegisterFailure failure),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return registerFailed(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialLogin(),
+    Result initialRegister(),
+    Result inProgress(),
+    Result loginSuccess(User user),
+    Result loginFailed(LoginFailure failure),
+    Result registerSuccess(User user),
+    Result registerFailed(RegisterFailure failure),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerFailed != null) {
+      return registerFailed(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialLogin(LoginStateInitialLogin value),
+    @required Result initialRegister(LoginStateInitialRegister value),
+    @required Result inProgress(LoginStateInProgress value),
+    @required Result loginSuccess(LoginStateSuccess value),
+    @required Result loginFailed(LoginStateFailed value),
+    @required Result registerSuccess(RegisterStateSuccess value),
+    @required Result registerFailed(RegisterStateFailed value),
+  }) {
+    assert(initialLogin != null);
+    assert(initialRegister != null);
+    assert(inProgress != null);
+    assert(loginSuccess != null);
+    assert(loginFailed != null);
+    assert(registerSuccess != null);
+    assert(registerFailed != null);
+    return registerFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialLogin(LoginStateInitialLogin value),
+    Result initialRegister(LoginStateInitialRegister value),
+    Result inProgress(LoginStateInProgress value),
+    Result loginSuccess(LoginStateSuccess value),
+    Result loginFailed(LoginStateFailed value),
+    Result registerSuccess(RegisterStateSuccess value),
+    Result registerFailed(RegisterStateFailed value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registerFailed != null) {
+      return registerFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterStateFailed implements LoginState {
+  const factory RegisterStateFailed(RegisterFailure failure) =
+      _$RegisterStateFailed;
+
+  RegisterFailure get failure;
+  $RegisterStateFailedCopyWith<RegisterStateFailed> get copyWith;
 }

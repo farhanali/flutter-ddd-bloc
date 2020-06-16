@@ -59,8 +59,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void _listenBlocEvents(BuildContext context, LoginState state) {
     state.maybeWhen(
-      success: (user) => _onLoginSuccess(user),
-      failed: (failure) => _flushError('Login failed: $failure'),
+      loginSuccess: (user) => _onLoginSuccess(user),
+      loginFailed: (failure) => _flushError('Login failed: $failure'),
       orElse: () {}, // nothing specific todo
     );
   }

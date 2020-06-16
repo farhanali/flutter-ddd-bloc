@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../auth/domain/auth_repository.dart';
+import '../domain/register_failure.dart';
 import '../domain/login_failure.dart';
 import '../domain/login_info.dart';
 import '../domain/login_repository.dart';
@@ -30,10 +31,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
   ) async* {
     yield* event.when(
-      signin: (event) => _mapSigninToState(event),
-      switchToRegister: () => _switchToRegisterState(),
-      switchToLogin: () => _switchToLoginState()
-    );
+        signin: (event) => _mapSigninToState(event),
+        switchToRegister: () => _switchToRegisterState(),
+        switchToLogin: () => _switchToLoginState());
   }
 
   Stream<LoginState> _mapSigninToState(LoginInfo loginInfo) async* {
@@ -49,10 +49,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final loginResult = await _loginRepo.login(input);
 
     yield loginResult.fold(
-      (failure) => LoginState.failed(failure),
+      (failure) => LoginState.loginFailed(failure),
       (user) {
         _authRepo.save(user);
-        return LoginState.success(user);
+        return LoginState.loginSuccess(user);
+      },
+    );
+  }
+
+  Stream<LoginState> _doRegister(LoginInfo input) async* {
+    final registerResult = await _loginRepo.register(input);
+
+    yield registerResult.fold(
+      (failure) => LoginState.registerFailed(failure),
+      (user) {
+        _authRepo.save(user);
+        return LoginState.registerSuccess(user);
       },
     );
   }
@@ -61,11 +73,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     yield LoginState.initialRegister();
   }
 
-    Stream<LoginState> _switchToLoginState() async* {
+  Stream<LoginState> _switchToLoginState() async* {
     yield LoginState.initialLogin();
   }
 
   Stream<LoginState> _validationFailed(LoginFailure failure) async* {
-    yield LoginState.failed(failure);
+    yield LoginState.loginFailed(failure);
   }
 }

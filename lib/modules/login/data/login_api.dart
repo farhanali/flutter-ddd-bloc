@@ -23,3 +23,22 @@ abstract class LoginApi extends ChopperService {
     return _$LoginApi(client);
   }
 }
+
+@ChopperApi(baseUrl: '/register')
+abstract class RegisterApi extends ChopperService {
+  @Post()
+  Future<Response<User>> register(@Body() Map<String, dynamic> body);
+
+  static RegisterApi create() {
+    final client = ChopperClient(
+      baseUrl: 'https://fluttermock.getsandbox.com:443',
+      services: [
+        _$RegisterApi(),
+      ],
+      converter: TypeConverter({User: (jsonData) => User.fromJson(jsonData)}),
+      interceptors: [HttpLoggingInterceptor()],
+    );
+
+    return _$RegisterApi(client);
+  }
+}
