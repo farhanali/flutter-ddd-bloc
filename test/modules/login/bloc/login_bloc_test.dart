@@ -23,15 +23,15 @@ void main() {
   });
 
   group('LoginBloc', () {
-    final user = User(name: 'Someone', email: 'someone@email.com');
+    const user = User(name: 'Someone', email: 'someone@email.com');
 
-    final validLogin =
+    const validLogin =
         LoginInfo(email: 'someone@email.com', password: 'someone1234');
-    final invalidLogin =
+    const invalidLogin =
         LoginInfo(email: 'noone@email.com', password: '12345678');
-    final invalidEmailLogin =
+    const invalidEmailLogin =
         LoginInfo(email: 'someoneemail.com', password: 'someone1234');
-    final invalidPasswordLogin =
+    const invalidPasswordLogin =
         LoginInfo(email: 'someoneemail.com', password: '1234');
 
     blocTest(
@@ -43,10 +43,10 @@ void main() {
             .thenAnswer((_) async => right(user));
         return LoginBloc(mockLoginRepository, mockAuthRepository);
       },
-      act: (LoginBloc bloc) async => bloc.add(LoginEvent.signin(validLogin)),
+      act: (bloc) async => bloc.add(const LoginEvent.signin(validLogin)),
       expect: [
-        LoginStateInProgress(),
-        LoginStateSuccess(user),
+        const LoginStateInProgress(),
+        const LoginStateSuccess(user),
       ],
       verify: (_) async {
         verify(mockAuthRepository.save(user)).called(1);
@@ -57,12 +57,12 @@ void main() {
       'Invalid login emits [LoginStateInProgress, LoginStateFailed]',
       build: () async {
         when(mockLoginRepository.login(invalidLogin))
-            .thenAnswer((_) async => left(LoginFailure.invalidLogin('')));
+            .thenAnswer((_) async => left(const LoginFailure.invalidLogin('')));
         return LoginBloc(mockLoginRepository, mockAuthRepository);
       },
-      act: (LoginBloc bloc) async => bloc.add(LoginEvent.signin(invalidLogin)),
+      act: (bloc) async => bloc.add(const LoginEvent.signin(invalidLogin)),
       expect: [
-        LoginStateInProgress(),
+        const LoginStateInProgress(),
         isA<LoginStateFailed>(),
       ],
     );
@@ -70,10 +70,9 @@ void main() {
     blocTest(
       'Invalid "email" login emits [LoginStateInProgress, LoginStateFailed]',
       build: () async => LoginBloc(mockLoginRepository, mockAuthRepository),
-      act: (LoginBloc bloc) async =>
-          bloc.add(LoginEvent.signin(invalidEmailLogin)),
+      act: (bloc) async => bloc.add(const LoginEvent.signin(invalidEmailLogin)),
       expect: [
-        LoginStateInProgress(),
+        const LoginStateInProgress(),
         isA<LoginStateFailed>(),
       ],
     );
@@ -81,10 +80,10 @@ void main() {
     blocTest(
       'Invalid "password" login emits [LoginStateInProgress, LoginStateFailed]',
       build: () async => LoginBloc(mockLoginRepository, mockAuthRepository),
-      act: (LoginBloc bloc) async =>
-          bloc.add(LoginEvent.signin(invalidPasswordLogin)),
+      act: (bloc) async =>
+          bloc.add(const LoginEvent.signin(invalidPasswordLogin)),
       expect: [
-        LoginStateInProgress(),
+        const LoginStateInProgress(),
         isA<LoginStateFailed>(),
       ],
     );

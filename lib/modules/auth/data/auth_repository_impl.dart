@@ -16,11 +16,11 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<AuthFailure, User>> read() async {
     try {
-      final storage = new FlutterSecureStorage();
+      const storage = FlutterSecureStorage();
       String userJson = await storage.read(key: authUserKey);
 
       if (userJson?.isEmpty ?? true) {
-        return left(AuthFailure.unauthenticated());
+        return left(const AuthFailure.unauthenticated());
       }
 
       // TODO Token expiry
@@ -33,7 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<AuthFailure, None>> save(User user) async {
     try {
-      final storage = new FlutterSecureStorage();
+      const storage = FlutterSecureStorage();
       await storage.write(key: authUserKey, value: json.encode(user.toJson()));
       return right(const None());
     } on PlatformException catch (e) {
@@ -44,7 +44,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<AuthFailure, None>> delete() async {
     try {
-      final storage = new FlutterSecureStorage();
+      const storage = FlutterSecureStorage();
       await storage.delete(key: authUserKey);
       return right(const None());
     } on PlatformException catch (e) {

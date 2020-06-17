@@ -9,7 +9,7 @@ part 'todo_state.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   @override
-  TodoState get initialState => TodoInitialState();
+  TodoState get initialState => const TodoInitialState();
 
   @override
   Stream<TodoState> mapEventToState(

@@ -9,8 +9,8 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (BuildContext context, AuthState state) async {
-        await Future.delayed(Duration(milliseconds: 2000));
+      listener: (context, state) async {
+        await Future.delayed(const Duration(milliseconds: 2000));
         state.maybeWhen(
           guest: () => _routeToLogin(context),
           user: (_) => _routeToHome(context),

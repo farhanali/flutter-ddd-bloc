@@ -16,7 +16,7 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage>
     with TickerProviderStateMixin {
-  TodoList todoList = TodoList(
+  TodoList todoList = const TodoList(
     title: "My Todo's",
     todos: [
       Todo(id: 1, name: 'Complete todo app', done: false),
@@ -31,10 +31,10 @@ class _TodoListPageState extends State<TodoListPage>
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (BuildContext context, AuthState state) {
+      listener: (context, state) {
         print(state);
         state.maybeWhen(
-          guest: () => _onLogoutSuccess(),
+          guest: _onLogoutSuccess,
           orElse: () {}, // nothing specific todo
         );
       },
@@ -49,11 +49,11 @@ class _TodoListPageState extends State<TodoListPage>
                 icon: Icons.content_paste,
                 color: Colors.orange,
               ),
-              SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
               TodoListInfo(todoList: todoList),
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
               _buildTodoList(),
-              SizedBox(height: 12.0),
+              const SizedBox(height: 12.0),
               _buildAddTodoField(),
             ],
           ),
@@ -78,9 +78,9 @@ class _TodoListPageState extends State<TodoListPage>
           color: Colors.black54,
         ),
         onSelected: (_) => _onLogoutTap(),
-        itemBuilder: (BuildContext context) {
+        itemBuilder: (context) {
           return [
-            PopupMenuItem<String>(
+            const PopupMenuItem<String>(
               value: 'Logout',
               child: Text('Logout'),
             ),
@@ -95,7 +95,7 @@ class _TodoListPageState extends State<TodoListPage>
       child: ListView.separated(
         controller: scrollController,
         itemCount: todoList.todos.length,
-        separatorBuilder: (c, _) => SizedBox(height: 10.0),
+        separatorBuilder: (c, _) => const SizedBox(height: 10.0),
         itemBuilder: (context, index) {
           final task = todoList.todos[index];
           return TodoItem(task: task);
@@ -110,14 +110,14 @@ class _TodoListPageState extends State<TodoListPage>
       keyboardType: TextInputType.emailAddress,
       autofocus: true,
       decoration: _buildDecoration('Add new todo'),
-      onFieldSubmitted: (value) => _onNewTodoAdd(value),
+      onFieldSubmitted: _onNewTodoAdd,
     );
   }
 
   InputDecoration _buildDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
-      contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(32.0),
       ),
@@ -134,7 +134,7 @@ class _TodoListPageState extends State<TodoListPage>
     newTodoController.text = '';
     scrollController.animateTo(
       scrollController.position.maxScrollExtent,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
 
@@ -142,7 +142,7 @@ class _TodoListPageState extends State<TodoListPage>
   }
 
   void _onLogoutTap() {
-    context.bloc<AuthBloc>().add(AuthEvent.logout());
+    context.bloc<AuthBloc>().add(const AuthEvent.logout());
   }
 
   void _onLogoutSuccess() async {

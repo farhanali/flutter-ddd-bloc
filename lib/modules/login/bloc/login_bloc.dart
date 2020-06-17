@@ -23,7 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._loginRepo, this._authRepo);
 
   @override
-  LoginState get initialState => LoginState.initial();
+  LoginState get initialState => const LoginState.initial();
 
   @override
   Stream<LoginState> mapEventToState(
@@ -38,7 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginInfo info = event.info;
     yield* info.validate().fold(
           () => _doLogin(info),
-          (failure) => _validationFailed(failure),
+          _validationFailed,
         );
   }
 

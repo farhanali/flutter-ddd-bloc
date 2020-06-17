@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.iconfig.dart';
 
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 @injectableInit
 void configureInjection(String environment) {

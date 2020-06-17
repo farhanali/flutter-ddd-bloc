@@ -22,7 +22,7 @@ class TodoListProgress extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 15.0),
+          const SizedBox(width: 15.0),
           Text('${(progress * 100).toInt()}%'),
         ],
       ),
@@ -59,11 +59,12 @@ class _ProgressState extends State<ProgressAnimation>
   void initState() {
     _value = widget.value;
 
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 100))
-          ..addListener(() => setState(() {
-                _value = _valueTween.evaluate(_controller);
-              }));
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    )..addListener(() => setState(() {
+          _value = _valueTween.evaluate(_controller);
+        }));
     super.initState();
   }
 
@@ -82,4 +83,4 @@ class _ProgressState extends State<ProgressAnimation>
   }
 }
 
-typedef Widget ProgressBuilder(BuildContext context, double value);
+typedef ProgressBuilder = Widget Function(BuildContext context, double value);

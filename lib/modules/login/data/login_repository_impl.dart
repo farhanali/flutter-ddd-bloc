@@ -22,18 +22,15 @@ class LoginRepositoryImpl implements LoginRepository {
       }
 
       // TODO proper error handling
-      final code = response.statusCode;
-      final error = response.error;
-
-      switch (code) {
+      switch (response.statusCode) {
         case 401:
-          return left(LoginFailure.invalidLogin('Unauthenticated'));
-        case 500:
-          return left(LoginFailure.serverError());
+          return left(const LoginFailure.invalidLogin('Unauthenticated'));
+        default:
+          return left(const LoginFailure.serverError());
       }
-    } catch (e) {
+    } on Exception {
       //TODO proper error handling
-      return left(LoginFailure.connectionError());
+      return left(const LoginFailure.connectionError());
     }
   }
 }

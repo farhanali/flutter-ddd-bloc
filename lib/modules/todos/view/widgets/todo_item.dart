@@ -15,7 +15,7 @@ class TodoItem extends StatelessWidget {
           child: Row(
             children: <Widget>[
               _buildCheckBox(),
-              SizedBox(width: 12.0),
+              const SizedBox(width: 12.0),
               _buildName(),
             ],
           ),
@@ -52,15 +52,15 @@ class TodoItem extends StatelessWidget {
     );
   }
 
-  _buildDeleteButton() {
+  Widget _buildDeleteButton() {
     if (!task.done) {
-      return SizedBox();
+      return const SizedBox();
     }
     return SizedBox(
       width: 20.0,
       height: 20.0,
       child: IconButton(
-        padding: EdgeInsets.all(0.0),
+        padding: const EdgeInsets.all(0.0),
         icon: Icon(
           Icons.delete,
           color: Colors.black38,

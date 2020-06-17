@@ -19,32 +19,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authRepo);
 
   @override
-  AuthState get initialState => AuthState.loading();
+  AuthState get initialState => const AuthState.loading();
 
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
     yield* event.when(
-      getUser: () => _mapGetUserToState(),
-      logout: () => _mapLogoutToState(),
+      getUser: _mapGetUserToState,
+      logout: _mapLogoutToState,
     );
   }
 
   Stream<AuthState> _mapGetUserToState() async* {
     final result = await _authRepo.read();
     yield result.fold(
-      (failure) => AuthState.guest(),
+      (failure) => const AuthState.guest(),
       (user) => AuthState.user(user),
     );
   }
 
   Stream<AuthState> _mapLogoutToState() async* {
-    yield AuthState.loading();
+    yield const AuthState.loading();
     final result = await _authRepo.delete();
     yield result.fold(
       (failure) => AuthState.error(failure),
-      (none) => AuthState.guest(),
+      (none) => const AuthState.guest(),
     );
   }
 }

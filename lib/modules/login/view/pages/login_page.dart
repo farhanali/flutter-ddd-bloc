@@ -20,25 +20,25 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: _listenBlocEvents,
-      builder: (BuildContext context, LoginState state) {
+      builder: (context, state) {
         return Scaffold(
           body: Center(
             child: Form(
               autovalidate: true,
               child: ListView(
                 shrinkWrap: true,
-                padding: EdgeInsets.only(left: 24, right: 24),
+                padding: const EdgeInsets.only(left: 24, right: 24),
                 children: <Widget>[
                   _buildLogo(),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   _buildTitle(),
-                  SizedBox(height: 48),
+                  const SizedBox(height: 48),
                   _buildEmailField(),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   _buildPasswordField(),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   _buildLoginButton(),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   _buildProgress(state),
                 ],
               ),
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _listenBlocEvents(BuildContext context, LoginState state) {
     state.maybeWhen(
-      success: (user) => _onLoginSuccess(user),
+      success: _onLoginSuccess,
       failed: (failure) => _flushError('Login failed: $failure'),
       orElse: () {}, // nothing specific todo
     );
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(color: Colors.black12, style: BorderStyle.solid),
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildTitle() {
-    return Text(
+    return const Text(
       'Login todo!',
       style: TextStyle(fontSize: 40),
     );
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       initialValue: 'farhan@mashkor.com',
       decoration: _buildDecoration('Email'),
-      validator: (value) => LoginInfo.validateEmail(value),
+      validator: LoginInfo.validateEmail,
     );
   }
 
@@ -101,14 +101,14 @@ class _LoginPageState extends State<LoginPage> {
       initialValue: 'farhan123',
       obscureText: true,
       decoration: _buildDecoration('Password'),
-      validator: (value) => LoginInfo.validatePassword(value),
+      validator: LoginInfo.validatePassword,
     );
   }
 
   InputDecoration _buildDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
-      contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -119,13 +119,13 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: 100,
       child: RaisedButton(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         color: Colors.black54,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        onPressed: () => _onLoginTap(),
+        onPressed: _onLoginTap,
         child: Text(
           'Log In',
           style: TextStyle(color: Colors.white),
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildProgress(LoginState state) {
     return state is LoginStateInProgress
-        ? Center(child: CircularProgressIndicator())
+        ? const Center(child: CircularProgressIndicator())
         : Container(height: 35);
   }
 

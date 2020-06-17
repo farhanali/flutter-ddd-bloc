@@ -1,0 +1,29 @@
+include: package:effective_dart/analysis_options.1.2.0.yaml
+#include: package:pedantic/analysis_options.yaml
+#include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    lines_longer_than_80_chars: true
+    always_put_required_named_parameters_first: true
+    always_declare_return_types: true
+    prefer_single_quotes: true
+    prefer_typing_uninitialized_variables: true
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+    prefer_constructors_over_static_methods: true
+    use_function_type_syntax_for_parameters: true
+    prefer_expression_function_bodies: false
+    public_member_api_docs: false
+    one_member_abstracts: false
+    omit_local_variable_types: false
+
+analyzer:
+  exclude:
+    - lib/**.iconfic.dart
+    - lib/**.freezed.dart
+    - lib/**.g.dart
+    - lib/**.chopper.dart
+  errors:
+    #prefer_const_constructors: error
