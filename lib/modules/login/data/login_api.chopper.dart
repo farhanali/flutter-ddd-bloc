@@ -36,10 +36,10 @@ class _$RegisterApi extends RegisterApi {
   final definitionType = RegisterApi;
 
   @override
-  Future<Response<User>> register(Map<String, dynamic> body) {
+  Future<Response<ApiResponse>> register(Map<String, dynamic> body) {
     final $url = '/register';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<User, User>($request);
+    return client.send<ApiResponse, ApiResponse>($request);
   }
 }

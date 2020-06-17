@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 
 import '../../../common/api/type_convertor.dart';
 import '../domain/user.dart';
+import '../domain/apiresponse.dart';
 
 part 'login_api.chopper.dart';
 
@@ -27,7 +28,7 @@ abstract class LoginApi extends ChopperService {
 @ChopperApi(baseUrl: '/register')
 abstract class RegisterApi extends ChopperService {
   @Post()
-  Future<Response<User>> register(@Body() Map<String, dynamic> body);
+  Future<Response<ApiResponse>> register(@Body() Map<String, dynamic> body);
 
   static RegisterApi create() {
     final client = ChopperClient(
@@ -35,7 +36,7 @@ abstract class RegisterApi extends ChopperService {
       services: [
         _$RegisterApi(),
       ],
-      converter: TypeConverter({User: (jsonData) => User.fromJson(jsonData)}),
+      converter: TypeConverter({ApiResponse: (jsonData) => ApiResponse.fromJson(jsonData)}),
       interceptors: [HttpLoggingInterceptor()],
     );
 

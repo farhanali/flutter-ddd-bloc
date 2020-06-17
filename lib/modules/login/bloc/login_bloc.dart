@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_clean_arch/modules/login/domain/apiresponse.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../auth/domain/auth_repository.dart';
 import '../domain/register_failure.dart';
+import '../domain/register.info.dart';
 import '../domain/login_failure.dart';
 import '../domain/login_info.dart';
 import '../domain/login_repository.dart';
@@ -32,6 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async* {
     yield* event.when(
         signin: (event) => _mapSigninToState(event),
+        signup: (event) => _doRegister(event),
         switchToRegister: () => _switchToRegisterState(),
         switchToLogin: () => _switchToLoginState());
   }
@@ -57,14 +60,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
   }
 
-  Stream<LoginState> _doRegister(LoginInfo input) async* {
+  Stream<LoginState> _doRegister(RegisterInfo input) async* {
     final registerResult = await _loginRepo.register(input);
 
     yield registerResult.fold(
       (failure) => LoginState.registerFailed(failure),
-      (user) {
-        _authRepo.save(user);
-        return LoginState.registerSuccess(user);
+      (successResponse) {
+        return LoginState.registerSuccess(successResponse);
       },
     );
   }

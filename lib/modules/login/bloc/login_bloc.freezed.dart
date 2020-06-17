@@ -18,6 +18,12 @@ class _$LoginEventTearOff {
     );
   }
 
+  LoginEventSignup signup(RegisterInfo info) {
+    return LoginEventSignup(
+      info,
+    );
+  }
+
   LoginEventSwitchToRegister switchToRegister() {
     return const LoginEventSwitchToRegister();
   }
@@ -34,12 +40,14 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result signin(LoginInfo info),
+    @required Result signup(RegisterInfo info),
     @required Result switchToRegister(),
     @required Result switchToLogin(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result signin(LoginInfo info),
+    Result signup(RegisterInfo info),
     Result switchToRegister(),
     Result switchToLogin(),
     @required Result orElse(),
@@ -47,12 +55,14 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result signin(LoginEventSignin value),
+    @required Result signup(LoginEventSignup value),
     @required Result switchToRegister(LoginEventSwitchToRegister value),
     @required Result switchToLogin(LoginEventSwitchToLogin value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result signin(LoginEventSignin value),
+    Result signup(LoginEventSignup value),
     Result switchToRegister(LoginEventSwitchToRegister value),
     Result switchToLogin(LoginEventSwitchToLogin value),
     @required Result orElse(),
@@ -143,10 +153,12 @@ class _$LoginEventSignin implements LoginEventSignin {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result signin(LoginInfo info),
+    @required Result signup(RegisterInfo info),
     @required Result switchToRegister(),
     @required Result switchToLogin(),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return signin(info);
@@ -156,6 +168,7 @@ class _$LoginEventSignin implements LoginEventSignin {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result signin(LoginInfo info),
+    Result signup(RegisterInfo info),
     Result switchToRegister(),
     Result switchToLogin(),
     @required Result orElse(),
@@ -171,10 +184,12 @@ class _$LoginEventSignin implements LoginEventSignin {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result signin(LoginEventSignin value),
+    @required Result signup(LoginEventSignup value),
     @required Result switchToRegister(LoginEventSwitchToRegister value),
     @required Result switchToLogin(LoginEventSwitchToLogin value),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return signin(this);
@@ -184,6 +199,7 @@ class _$LoginEventSignin implements LoginEventSignin {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result signin(LoginEventSignin value),
+    Result signup(LoginEventSignup value),
     Result switchToRegister(LoginEventSwitchToRegister value),
     Result switchToLogin(LoginEventSwitchToLogin value),
     @required Result orElse(),
@@ -201,6 +217,142 @@ abstract class LoginEventSignin implements LoginEvent {
 
   LoginInfo get info;
   $LoginEventSigninCopyWith<LoginEventSignin> get copyWith;
+}
+
+abstract class $LoginEventSignupCopyWith<$Res> {
+  factory $LoginEventSignupCopyWith(
+          LoginEventSignup value, $Res Function(LoginEventSignup) then) =
+      _$LoginEventSignupCopyWithImpl<$Res>;
+  $Res call({RegisterInfo info});
+
+  $RegisterInfoCopyWith<$Res> get info;
+}
+
+class _$LoginEventSignupCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginEventSignupCopyWith<$Res> {
+  _$LoginEventSignupCopyWithImpl(
+      LoginEventSignup _value, $Res Function(LoginEventSignup) _then)
+      : super(_value, (v) => _then(v as LoginEventSignup));
+
+  @override
+  LoginEventSignup get _value => super._value as LoginEventSignup;
+
+  @override
+  $Res call({
+    Object info = freezed,
+  }) {
+    return _then(LoginEventSignup(
+      info == freezed ? _value.info : info as RegisterInfo,
+    ));
+  }
+
+  @override
+  $RegisterInfoCopyWith<$Res> get info {
+    if (_value.info == null) {
+      return null;
+    }
+    return $RegisterInfoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value));
+    });
+  }
+}
+
+class _$LoginEventSignup implements LoginEventSignup {
+  const _$LoginEventSignup(this.info) : assert(info != null);
+
+  @override
+  final RegisterInfo info;
+
+  @override
+  String toString() {
+    return 'LoginEvent.signup(info: $info)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoginEventSignup &&
+            (identical(other.info, info) ||
+                const DeepCollectionEquality().equals(other.info, info)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
+
+  @override
+  $LoginEventSignupCopyWith<LoginEventSignup> get copyWith =>
+      _$LoginEventSignupCopyWithImpl<LoginEventSignup>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result signin(LoginInfo info),
+    @required Result signup(RegisterInfo info),
+    @required Result switchToRegister(),
+    @required Result switchToLogin(),
+  }) {
+    assert(signin != null);
+    assert(signup != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return signup(info);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result signin(LoginInfo info),
+    Result signup(RegisterInfo info),
+    Result switchToRegister(),
+    Result switchToLogin(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (signup != null) {
+      return signup(info);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result signin(LoginEventSignin value),
+    @required Result signup(LoginEventSignup value),
+    @required Result switchToRegister(LoginEventSwitchToRegister value),
+    @required Result switchToLogin(LoginEventSwitchToLogin value),
+  }) {
+    assert(signin != null);
+    assert(signup != null);
+    assert(switchToRegister != null);
+    assert(switchToLogin != null);
+    return signup(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result signin(LoginEventSignin value),
+    Result signup(LoginEventSignup value),
+    Result switchToRegister(LoginEventSwitchToRegister value),
+    Result switchToLogin(LoginEventSwitchToLogin value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (signup != null) {
+      return signup(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginEventSignup implements LoginEvent {
+  const factory LoginEventSignup(RegisterInfo info) = _$LoginEventSignup;
+
+  RegisterInfo get info;
+  $LoginEventSignupCopyWith<LoginEventSignup> get copyWith;
 }
 
 abstract class $LoginEventSwitchToRegisterCopyWith<$Res> {
@@ -241,10 +393,12 @@ class _$LoginEventSwitchToRegister implements LoginEventSwitchToRegister {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result signin(LoginInfo info),
+    @required Result signup(RegisterInfo info),
     @required Result switchToRegister(),
     @required Result switchToLogin(),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return switchToRegister();
@@ -254,6 +408,7 @@ class _$LoginEventSwitchToRegister implements LoginEventSwitchToRegister {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result signin(LoginInfo info),
+    Result signup(RegisterInfo info),
     Result switchToRegister(),
     Result switchToLogin(),
     @required Result orElse(),
@@ -269,10 +424,12 @@ class _$LoginEventSwitchToRegister implements LoginEventSwitchToRegister {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result signin(LoginEventSignin value),
+    @required Result signup(LoginEventSignup value),
     @required Result switchToRegister(LoginEventSwitchToRegister value),
     @required Result switchToLogin(LoginEventSwitchToLogin value),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return switchToRegister(this);
@@ -282,6 +439,7 @@ class _$LoginEventSwitchToRegister implements LoginEventSwitchToRegister {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result signin(LoginEventSignin value),
+    Result signup(LoginEventSignup value),
     Result switchToRegister(LoginEventSwitchToRegister value),
     Result switchToLogin(LoginEventSwitchToLogin value),
     @required Result orElse(),
@@ -335,10 +493,12 @@ class _$LoginEventSwitchToLogin implements LoginEventSwitchToLogin {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result signin(LoginInfo info),
+    @required Result signup(RegisterInfo info),
     @required Result switchToRegister(),
     @required Result switchToLogin(),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return switchToLogin();
@@ -348,6 +508,7 @@ class _$LoginEventSwitchToLogin implements LoginEventSwitchToLogin {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result signin(LoginInfo info),
+    Result signup(RegisterInfo info),
     Result switchToRegister(),
     Result switchToLogin(),
     @required Result orElse(),
@@ -363,10 +524,12 @@ class _$LoginEventSwitchToLogin implements LoginEventSwitchToLogin {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result signin(LoginEventSignin value),
+    @required Result signup(LoginEventSignup value),
     @required Result switchToRegister(LoginEventSwitchToRegister value),
     @required Result switchToLogin(LoginEventSwitchToLogin value),
   }) {
     assert(signin != null);
+    assert(signup != null);
     assert(switchToRegister != null);
     assert(switchToLogin != null);
     return switchToLogin(this);
@@ -376,6 +539,7 @@ class _$LoginEventSwitchToLogin implements LoginEventSwitchToLogin {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result signin(LoginEventSignin value),
+    Result signup(LoginEventSignup value),
     Result switchToRegister(LoginEventSwitchToRegister value),
     Result switchToLogin(LoginEventSwitchToLogin value),
     @required Result orElse(),
@@ -419,9 +583,9 @@ class _$LoginStateTearOff {
     );
   }
 
-  RegisterStateSuccess registerSuccess(User user) {
+  RegisterStateSuccess registerSuccess(ApiResponse response) {
     return RegisterStateSuccess(
-      user,
+      response,
     );
   }
 
@@ -443,7 +607,7 @@ mixin _$LoginState {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   });
   @optionalTypeArgs
@@ -453,7 +617,7 @@ mixin _$LoginState {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   });
@@ -535,7 +699,7 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -556,7 +720,7 @@ class _$LoginStateInitialLogin implements LoginStateInitialLogin {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
@@ -654,7 +818,7 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -675,7 +839,7 @@ class _$LoginStateInitialRegister implements LoginStateInitialRegister {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
@@ -772,7 +936,7 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -793,7 +957,7 @@ class _$LoginStateInProgress implements LoginStateInProgress {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
@@ -923,7 +1087,7 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -944,7 +1108,7 @@ class _$LoginStateSuccess implements LoginStateSuccess {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
@@ -1077,7 +1241,7 @@ class _$LoginStateFailed implements LoginStateFailed {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -1098,7 +1262,7 @@ class _$LoginStateFailed implements LoginStateFailed {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
@@ -1161,9 +1325,9 @@ abstract class $RegisterStateSuccessCopyWith<$Res> {
   factory $RegisterStateSuccessCopyWith(RegisterStateSuccess value,
           $Res Function(RegisterStateSuccess) then) =
       _$RegisterStateSuccessCopyWithImpl<$Res>;
-  $Res call({User user});
+  $Res call({ApiResponse response});
 
-  $UserCopyWith<$Res> get user;
+  $ApiResponseCopyWith<$Res> get response;
 }
 
 class _$RegisterStateSuccessCopyWithImpl<$Res>
@@ -1178,46 +1342,47 @@ class _$RegisterStateSuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
+    Object response = freezed,
   }) {
     return _then(RegisterStateSuccess(
-      user == freezed ? _value.user : user as User,
+      response == freezed ? _value.response : response as ApiResponse,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get user {
-    if (_value.user == null) {
+  $ApiResponseCopyWith<$Res> get response {
+    if (_value.response == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+    return $ApiResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
     });
   }
 }
 
 class _$RegisterStateSuccess implements RegisterStateSuccess {
-  const _$RegisterStateSuccess(this.user) : assert(user != null);
+  const _$RegisterStateSuccess(this.response) : assert(response != null);
 
   @override
-  final User user;
+  final ApiResponse response;
 
   @override
   String toString() {
-    return 'LoginState.registerSuccess(user: $user)';
+    return 'LoginState.registerSuccess(response: $response)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is RegisterStateSuccess &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
 
   @override
   $RegisterStateSuccessCopyWith<RegisterStateSuccess> get copyWith =>
@@ -1232,7 +1397,7 @@ class _$RegisterStateSuccess implements RegisterStateSuccess {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -1242,7 +1407,7 @@ class _$RegisterStateSuccess implements RegisterStateSuccess {
     assert(loginFailed != null);
     assert(registerSuccess != null);
     assert(registerFailed != null);
-    return registerSuccess(user);
+    return registerSuccess(response);
   }
 
   @override
@@ -1253,13 +1418,13 @@ class _$RegisterStateSuccess implements RegisterStateSuccess {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (registerSuccess != null) {
-      return registerSuccess(user);
+      return registerSuccess(response);
     }
     return orElse();
   }
@@ -1306,9 +1471,10 @@ class _$RegisterStateSuccess implements RegisterStateSuccess {
 }
 
 abstract class RegisterStateSuccess implements LoginState {
-  const factory RegisterStateSuccess(User user) = _$RegisterStateSuccess;
+  const factory RegisterStateSuccess(ApiResponse response) =
+      _$RegisterStateSuccess;
 
-  User get user;
+  ApiResponse get response;
   $RegisterStateSuccessCopyWith<RegisterStateSuccess> get copyWith;
 }
 
@@ -1386,7 +1552,7 @@ class _$RegisterStateFailed implements RegisterStateFailed {
     @required Result inProgress(),
     @required Result loginSuccess(User user),
     @required Result loginFailed(LoginFailure failure),
-    @required Result registerSuccess(User user),
+    @required Result registerSuccess(ApiResponse response),
     @required Result registerFailed(RegisterFailure failure),
   }) {
     assert(initialLogin != null);
@@ -1407,7 +1573,7 @@ class _$RegisterStateFailed implements RegisterStateFailed {
     Result inProgress(),
     Result loginSuccess(User user),
     Result loginFailed(LoginFailure failure),
-    Result registerSuccess(User user),
+    Result registerSuccess(ApiResponse response),
     Result registerFailed(RegisterFailure failure),
     @required Result orElse(),
   }) {

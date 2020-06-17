@@ -1,11 +1,13 @@
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../todos/view/pages/todo_list_page.dart';
 import '../../bloc/login_bloc.dart';
 import '../../domain/login_info.dart';
+import '../../domain/register.info.dart';
 import '../../domain/user.dart';
+import '../../domain/apiresponse.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,8 +15,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String name = 'Farhan Ali';
   String email = 'farhan@mashkor.com';
   String password = 'farhan123';
+  String confirmedPassword = 'farhan123';
+
+  bool isRegisterState(LoginState loginState) {
+    if (loginState is LoginStateInitialRegister ||
+        loginState is RegisterStateFailed ||
+        loginState is RegisterStateSuccess)
+      return true;
+    else
+      return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +44,21 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   _buildLogo(),
                   SizedBox(height: 12),
-                  _buildTitle(),
+                  _buildTitle(state),
                   SizedBox(height: 48),
+                  isRegisterState(state)
+                      ? _buildInputNameField()
+                      : SizedBox(height: 0),
+                  isRegisterState(state)
+                      ? SizedBox(height: 8)
+                      : SizedBox(height: 0),
                   _buildEmailField(),
                   SizedBox(height: 8),
                   _buildPasswordField(),
-                  state == LoginState.initialRegister()
+                  isRegisterState(state)
                       ? SizedBox(height: 8)
                       : SizedBox(height: 0),
-                  state == LoginState.initialRegister()
+                  isRegisterState(state)
                       ? _buildConfirmPasswordField()
                       : SizedBox(height: 0),
                   SizedBox(height: 24),
@@ -61,6 +80,8 @@ class _LoginPageState extends State<LoginPage> {
     state.maybeWhen(
       loginSuccess: (user) => _onLoginSuccess(user),
       loginFailed: (failure) => _flushError('Login failed: $failure'),
+      registerSuccess: (responseSuccess) => _onRegisterSuccess(responseSuccess),
+      registerFailed: (failure) => _flushError('Register failed: $failure'),
       orElse: () {}, // nothing specific todo
     );
   }
@@ -84,9 +105,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildTitle() {
+  Widget _buildTitle(LoginState state) {
     return Text(
-      'Login todo!',
+      isRegisterState(state) ? 'Register todo!' : 'Login todo!',
       style: TextStyle(fontSize: 40),
     );
   }
@@ -115,12 +136,22 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildConfirmPasswordField() {
     return TextFormField(
-      onChanged: (value) => password = value,
+      onChanged: (value) => confirmedPassword = value,
       autofocus: false,
       initialValue: 'farhan123',
       obscureText: true,
       decoration: _buildDecoration('Confirm password', 'Confirm password'),
       validator: (value) => LoginInfo.validatePassword(value),
+    );
+  }
+
+  Widget _buildInputNameField() {
+    return TextFormField(
+      onChanged: (value) => name = value,
+      autofocus: false,
+      initialValue: 'Farhan Ali',
+      decoration: _buildDecoration('Name', 'Name'),
+      validator: (value) => RegisterInfo.validateName(value),
     );
   }
 
@@ -147,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         onPressed: () => _onLoginTap(state),
         child: Text(
-          state == LoginState.initialLogin() ? 'Log In' : 'Sign up',
+          !isRegisterState(state) ? 'Log In' : 'Sign up',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -166,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         onPressed: () => _onRegisterTap(state),
         child: Text(
-          state == LoginState.initialLogin() ? 'Register' : 'Back to log in',
+          !isRegisterState(state) ? 'Register' : 'Back to log in',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -180,26 +211,37 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLoginTap(LoginState state) {
-    if (state == LoginState.initialLogin()) {
+    if (isRegisterState(state)) {
+      final validationResult = RegisterInfo.validateUniformityOfPassword(password, confirmedPassword);
+      if(validationResult != null) {
+        _flushError(validationResult);
+        return;
+      }
+
+      final input = RegisterInfo(name: name, email: email, password: password);
+      context.bloc<LoginBloc>().add(LoginEvent.signup(input));
+    } else {
       final input = LoginInfo(email: email, password: password);
       context.bloc<LoginBloc>().add(LoginEvent.signin(input));
-    } else {
-      //perform register
     }
   }
 
   void _onRegisterTap(LoginState state) {
-    if (state == LoginState.initialLogin()) {
-      context.bloc<LoginBloc>().add(LoginEvent.switchToRegister());
-    } else {
+    if (isRegisterState(state))
       context.bloc<LoginBloc>().add(LoginEvent.switchToLogin());
-    }
+    else
+      context.bloc<LoginBloc>().add(LoginEvent.switchToRegister());
   }
 
   void _onLoginSuccess(User user) async {
-    await _flushSuccess('Welcom ${user.name}', second: 1);
+    await _flushSuccess('Welcome ${user.name}', second: 1);
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => TodoListPage()));
+  }
+
+  void _onRegisterSuccess(ApiResponse response) async {
+    await _flushSuccess('${response.message}. Please log in', second: 2);
+    context.bloc<LoginBloc>().add(LoginEvent.switchToLogin());
   }
 
   Future _flushSuccess(String message, {int second = 2}) {

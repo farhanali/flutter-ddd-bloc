@@ -20,6 +20,18 @@ class _$RegisterFailureTearOff {
     return const ServerError();
   }
 
+  MissingParameters missingParameters(String error) {
+    return MissingParameters(
+      error,
+    );
+  }
+
+  ValidationError validationError(String error) {
+    return ValidationError(
+      error,
+    );
+  }
+
   UserAlreadyExistError userAlreadyExist(String error) {
     return UserAlreadyExistError(
       error,
@@ -35,12 +47,16 @@ mixin _$RegisterFailure {
   Result when<Result extends Object>({
     @required Result connectionError(),
     @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
     @required Result userAlreadyExist(String error),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result connectionError(),
     Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
     Result userAlreadyExist(String error),
     @required Result orElse(),
   });
@@ -48,12 +64,16 @@ mixin _$RegisterFailure {
   Result map<Result extends Object>({
     @required Result connectionError(ConnectionError value),
     @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
     @required Result userAlreadyExist(UserAlreadyExistError value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result connectionError(ConnectionError value),
     Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
     Result userAlreadyExist(UserAlreadyExistError value),
     @required Result orElse(),
   });
@@ -112,10 +132,14 @@ class _$ConnectionError implements ConnectionError {
   Result when<Result extends Object>({
     @required Result connectionError(),
     @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
     @required Result userAlreadyExist(String error),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return connectionError();
   }
@@ -125,6 +149,8 @@ class _$ConnectionError implements ConnectionError {
   Result maybeWhen<Result extends Object>({
     Result connectionError(),
     Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
     Result userAlreadyExist(String error),
     @required Result orElse(),
   }) {
@@ -140,10 +166,14 @@ class _$ConnectionError implements ConnectionError {
   Result map<Result extends Object>({
     @required Result connectionError(ConnectionError value),
     @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
     @required Result userAlreadyExist(UserAlreadyExistError value),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return connectionError(this);
   }
@@ -153,6 +183,8 @@ class _$ConnectionError implements ConnectionError {
   Result maybeMap<Result extends Object>({
     Result connectionError(ConnectionError value),
     Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
     Result userAlreadyExist(UserAlreadyExistError value),
     @required Result orElse(),
   }) {
@@ -206,10 +238,14 @@ class _$ServerError implements ServerError {
   Result when<Result extends Object>({
     @required Result connectionError(),
     @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
     @required Result userAlreadyExist(String error),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return serverError();
   }
@@ -219,6 +255,8 @@ class _$ServerError implements ServerError {
   Result maybeWhen<Result extends Object>({
     Result connectionError(),
     Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
     Result userAlreadyExist(String error),
     @required Result orElse(),
   }) {
@@ -234,10 +272,14 @@ class _$ServerError implements ServerError {
   Result map<Result extends Object>({
     @required Result connectionError(ConnectionError value),
     @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
     @required Result userAlreadyExist(UserAlreadyExistError value),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return serverError(this);
   }
@@ -247,6 +289,8 @@ class _$ServerError implements ServerError {
   Result maybeMap<Result extends Object>({
     Result connectionError(ConnectionError value),
     Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
     Result userAlreadyExist(UserAlreadyExistError value),
     @required Result orElse(),
   }) {
@@ -260,6 +304,266 @@ class _$ServerError implements ServerError {
 
 abstract class ServerError implements RegisterFailure {
   const factory ServerError() = _$ServerError;
+}
+
+abstract class $MissingParametersCopyWith<$Res> {
+  factory $MissingParametersCopyWith(
+          MissingParameters value, $Res Function(MissingParameters) then) =
+      _$MissingParametersCopyWithImpl<$Res>;
+  $Res call({String error});
+}
+
+class _$MissingParametersCopyWithImpl<$Res>
+    extends _$RegisterFailureCopyWithImpl<$Res>
+    implements $MissingParametersCopyWith<$Res> {
+  _$MissingParametersCopyWithImpl(
+      MissingParameters _value, $Res Function(MissingParameters) _then)
+      : super(_value, (v) => _then(v as MissingParameters));
+
+  @override
+  MissingParameters get _value => super._value as MissingParameters;
+
+  @override
+  $Res call({
+    Object error = freezed,
+  }) {
+    return _then(MissingParameters(
+      error == freezed ? _value.error : error as String,
+    ));
+  }
+}
+
+class _$MissingParameters implements MissingParameters {
+  const _$MissingParameters(this.error) : assert(error != null);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'RegisterFailure.missingParameters(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MissingParameters &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @override
+  $MissingParametersCopyWith<MissingParameters> get copyWith =>
+      _$MissingParametersCopyWithImpl<MissingParameters>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result connectionError(),
+    @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
+    @required Result userAlreadyExist(String error),
+  }) {
+    assert(connectionError != null);
+    assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
+    assert(userAlreadyExist != null);
+    return missingParameters(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result connectionError(),
+    Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
+    Result userAlreadyExist(String error),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (missingParameters != null) {
+      return missingParameters(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result connectionError(ConnectionError value),
+    @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
+    @required Result userAlreadyExist(UserAlreadyExistError value),
+  }) {
+    assert(connectionError != null);
+    assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
+    assert(userAlreadyExist != null);
+    return missingParameters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result connectionError(ConnectionError value),
+    Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
+    Result userAlreadyExist(UserAlreadyExistError value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (missingParameters != null) {
+      return missingParameters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MissingParameters implements RegisterFailure {
+  const factory MissingParameters(String error) = _$MissingParameters;
+
+  String get error;
+  $MissingParametersCopyWith<MissingParameters> get copyWith;
+}
+
+abstract class $ValidationErrorCopyWith<$Res> {
+  factory $ValidationErrorCopyWith(
+          ValidationError value, $Res Function(ValidationError) then) =
+      _$ValidationErrorCopyWithImpl<$Res>;
+  $Res call({String error});
+}
+
+class _$ValidationErrorCopyWithImpl<$Res>
+    extends _$RegisterFailureCopyWithImpl<$Res>
+    implements $ValidationErrorCopyWith<$Res> {
+  _$ValidationErrorCopyWithImpl(
+      ValidationError _value, $Res Function(ValidationError) _then)
+      : super(_value, (v) => _then(v as ValidationError));
+
+  @override
+  ValidationError get _value => super._value as ValidationError;
+
+  @override
+  $Res call({
+    Object error = freezed,
+  }) {
+    return _then(ValidationError(
+      error == freezed ? _value.error : error as String,
+    ));
+  }
+}
+
+class _$ValidationError implements ValidationError {
+  const _$ValidationError(this.error) : assert(error != null);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'RegisterFailure.validationError(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ValidationError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @override
+  $ValidationErrorCopyWith<ValidationError> get copyWith =>
+      _$ValidationErrorCopyWithImpl<ValidationError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result connectionError(),
+    @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
+    @required Result userAlreadyExist(String error),
+  }) {
+    assert(connectionError != null);
+    assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
+    assert(userAlreadyExist != null);
+    return validationError(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result connectionError(),
+    Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
+    Result userAlreadyExist(String error),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (validationError != null) {
+      return validationError(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result connectionError(ConnectionError value),
+    @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
+    @required Result userAlreadyExist(UserAlreadyExistError value),
+  }) {
+    assert(connectionError != null);
+    assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
+    assert(userAlreadyExist != null);
+    return validationError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result connectionError(ConnectionError value),
+    Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
+    Result userAlreadyExist(UserAlreadyExistError value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (validationError != null) {
+      return validationError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ValidationError implements RegisterFailure {
+  const factory ValidationError(String error) = _$ValidationError;
+
+  String get error;
+  $ValidationErrorCopyWith<ValidationError> get copyWith;
 }
 
 abstract class $UserAlreadyExistErrorCopyWith<$Res> {
@@ -322,10 +626,14 @@ class _$UserAlreadyExistError implements UserAlreadyExistError {
   Result when<Result extends Object>({
     @required Result connectionError(),
     @required Result serverError(),
+    @required Result missingParameters(String error),
+    @required Result validationError(String error),
     @required Result userAlreadyExist(String error),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return userAlreadyExist(error);
   }
@@ -335,6 +643,8 @@ class _$UserAlreadyExistError implements UserAlreadyExistError {
   Result maybeWhen<Result extends Object>({
     Result connectionError(),
     Result serverError(),
+    Result missingParameters(String error),
+    Result validationError(String error),
     Result userAlreadyExist(String error),
     @required Result orElse(),
   }) {
@@ -350,10 +660,14 @@ class _$UserAlreadyExistError implements UserAlreadyExistError {
   Result map<Result extends Object>({
     @required Result connectionError(ConnectionError value),
     @required Result serverError(ServerError value),
+    @required Result missingParameters(MissingParameters value),
+    @required Result validationError(ValidationError value),
     @required Result userAlreadyExist(UserAlreadyExistError value),
   }) {
     assert(connectionError != null);
     assert(serverError != null);
+    assert(missingParameters != null);
+    assert(validationError != null);
     assert(userAlreadyExist != null);
     return userAlreadyExist(this);
   }
@@ -363,6 +677,8 @@ class _$UserAlreadyExistError implements UserAlreadyExistError {
   Result maybeMap<Result extends Object>({
     Result connectionError(ConnectionError value),
     Result serverError(ServerError value),
+    Result missingParameters(MissingParameters value),
+    Result validationError(ValidationError value),
     Result userAlreadyExist(UserAlreadyExistError value),
     @required Result orElse(),
   }) {
