@@ -32,7 +32,6 @@ class _TodoListPageState extends State<TodoListPage>
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        print(state);
         state.maybeWhen(
           guest: _onLogoutSuccess,
           orElse: () {}, // nothing specific todo

@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
         state.maybeWhen(
           guest: () => _routeToLogin(context),
           user: (_) => _routeToHome(context),
-          orElse: () => print(state),
+          orElse: () {},
         );
       },
       child: _PageWidget(),
