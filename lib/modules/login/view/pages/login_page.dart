@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
       child: RaisedButton(
         elevation: 0,
         onPressed: _onLoginTap,
-        child: Text(
+        child: const Text(
           'Log In',
           style: TextStyle(color: Colors.white),
         ),
