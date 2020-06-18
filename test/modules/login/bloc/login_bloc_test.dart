@@ -2,12 +2,16 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_clean_arch/modules/auth/domain/auth_repository.dart';
 import 'package:flutter_clean_arch/modules/login/bloc/login_bloc.dart';
+import 'package:flutter_clean_arch/modules/login/domain/apiresponse.dart';
 import 'package:flutter_clean_arch/modules/login/domain/login_failure.dart';
 import 'package:flutter_clean_arch/modules/login/domain/login_info.dart';
 import 'package:flutter_clean_arch/modules/login/domain/login_repository.dart';
+import 'package:flutter_clean_arch/modules/login/domain/register.info.dart';
+import 'package:flutter_clean_arch/modules/login/domain/register_failure.dart';
 import 'package:flutter_clean_arch/modules/login/domain/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'dart:math' show Random;
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
@@ -86,6 +90,73 @@ void main() {
       expect: [
         LoginStateInProgress(),
         isA<LoginStateFailed>(),
+      ],
+    );
+  });
+
+  group('RegisterBloc', () {
+    final userAlreadyExistsRegisterInfo = RegisterInfo(
+        name: 'Mateusz',
+        email: 'mat.szafraniec@outlook.com',
+        password: 'Test123');
+
+    final newUserRegisterInfo = RegisterInfo(
+        name: 'Mat Szafraniec',
+        email: 'mat.szafraniec1@outlook.com',
+        password: 'Test123');
+
+    final apiResponse =
+        ApiResponse(status: 'success', message: 'User created successfully');
+
+    blocTest(
+      "Valid registration emits [LoginStateInitialRegister, RegisterStateSuccess]",
+      build: () async {
+        when(mockLoginRepository.register(newUserRegisterInfo))
+            .thenAnswer((_) async => right(apiResponse));
+        return LoginBloc(mockLoginRepository, mockAuthRepository);
+      },
+      act: (bloc) async {
+        bloc.add(LoginEvent.switchToRegister());
+        bloc.add(LoginEvent.signup(newUserRegisterInfo));
+      },
+      expect: [
+        LoginState.initialRegister(),
+        LoginState.registerSuccess(apiResponse)
+      ],
+    );
+
+    blocTest(
+      'Switch to register state emits [LoginStateInitialRegister]',
+      build: () async => LoginBloc(mockLoginRepository, mockAuthRepository),
+      act: (bloc) => bloc.add(LoginEvent.switchToRegister()),
+      expect: [isA<LoginStateInitialRegister>()],
+    );
+
+    blocTest(
+      'Return to login state emits [LoginStateInitialRegister, LoginStateInitialLogin]',
+      build: () async => LoginBloc(mockLoginRepository, mockAuthRepository),
+      act: (bloc) {
+        bloc.add(LoginEvent.switchToRegister());
+        return bloc.add(LoginEvent.switchToLogin());
+      },
+      expect: [LoginStateInitialRegister(), LoginStateInitialLogin()],
+    );
+
+    blocTest(
+      "'User already exists' endpoint response emits [LoginStateInitialRegister, RegisterStateFailed]",
+      build: () async {
+        when(mockLoginRepository.register(userAlreadyExistsRegisterInfo))
+            .thenAnswer(
+                (_) async => left(RegisterFailure.userAlreadyExist('')));
+        return LoginBloc(mockLoginRepository, mockAuthRepository);
+      },
+      act: (bloc) async {
+        bloc.add(LoginEvent.switchToRegister());
+        bloc.add(LoginEvent.signup(userAlreadyExistsRegisterInfo));
+      },
+      expect: [
+        LoginState.initialRegister(),
+        LoginState.registerFailed(RegisterFailure.userAlreadyExist(''))
       ],
     );
   });
