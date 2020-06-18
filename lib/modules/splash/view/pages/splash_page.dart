@@ -1,9 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/router.gr.dart';
 import '../../../auth/bloc/auth_bloc.dart';
-import '../../../login/view/pages/login_page.dart';
-import '../../../todos/view/pages/todo_list_page.dart';
 
 class SplashPage extends StatelessWidget {
   @override
@@ -22,13 +22,11 @@ class SplashPage extends StatelessWidget {
   }
 
   void _routeToLogin(BuildContext context) {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+    ExtendedNavigator.of(context).pushReplacementNamed(Routes.loginPage);
   }
 
   void _routeToHome(BuildContext context) {
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => TodoListPage()));
+    ExtendedNavigator.of(context).pushReplacementNamed(Routes.todoListPage);
   }
 }
 

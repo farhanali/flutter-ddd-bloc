@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../todos/view/pages/todo_list_page.dart';
+import '../../../app/router.gr.dart';
 import '../../bloc/login_bloc.dart';
 import '../../domain/login_info.dart';
 import '../../domain/user.dart';
@@ -89,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       initialValue: 'farhan@mashkor.com',
-      decoration: _buildDecoration('Email'),
       validator: LoginInfo.validateEmail,
     );
   }
@@ -100,18 +100,7 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       initialValue: 'farhan123',
       obscureText: true,
-      decoration: _buildDecoration('Password'),
       validator: LoginInfo.validatePassword,
-    );
-  }
-
-  InputDecoration _buildDecoration(String hint) {
-    return InputDecoration(
-      hintText: hint,
-      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
     );
   }
 
@@ -119,12 +108,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: 100,
       child: RaisedButton(
-        padding: const EdgeInsets.all(12),
-        color: Colors.black54,
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
         onPressed: _onLoginTap,
         child: Text(
           'Log In',
@@ -147,8 +131,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onLoginSuccess(User user) async {
     await _flushSuccess('Welcom ${user.name}', second: 1);
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => TodoListPage()));
+    ExtendedNavigator.of(context).pushReplacementNamed(Routes.todoListPage);
   }
 
   Future _flushSuccess(String message, {int second = 2}) {

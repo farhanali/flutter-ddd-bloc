@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/router.gr.dart';
 import '../../../auth/bloc/auth_bloc.dart';
-import '../../../login/view/pages/login_page.dart';
 import '../../domain/todo.dart';
 import '../widgets/todo_item.dart';
 import '../widgets/todo_list_icon.dart';
@@ -63,8 +64,6 @@ class _TodoListPageState extends State<TodoListPage>
 
   Widget _buildAppbar() {
     return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
       actions: _buildActions(),
     );
   }
@@ -74,7 +73,6 @@ class _TodoListPageState extends State<TodoListPage>
       PopupMenuButton(
         icon: Icon(
           Icons.more_vert,
-          color: Colors.black54,
         ),
         onSelected: (_) => _onLogoutTap(),
         itemBuilder: (context) {
@@ -108,18 +106,7 @@ class _TodoListPageState extends State<TodoListPage>
       controller: newTodoController,
       keyboardType: TextInputType.emailAddress,
       autofocus: true,
-      decoration: _buildDecoration('Add new todo'),
       onFieldSubmitted: _onNewTodoAdd,
-    );
-  }
-
-  InputDecoration _buildDecoration(String hint) {
-    return InputDecoration(
-      hintText: hint,
-      contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(32.0),
-      ),
     );
   }
 
@@ -149,7 +136,7 @@ class _TodoListPageState extends State<TodoListPage>
       message: 'Logout success',
       duration: const Duration(seconds: 1),
     ).show(context);
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+
+    ExtendedNavigator.of(context).pushReplacementNamed(Routes.loginPage);
   }
 }
