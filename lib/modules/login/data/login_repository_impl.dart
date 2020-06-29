@@ -9,7 +9,9 @@ import 'login_api.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
-  final LoginApi _api = LoginApi.create();
+  final LoginApi _api;
+
+  LoginRepositoryImpl(this._api);
 
   @override
   Future<Either<LoginFailure, User>> login(LoginInfo loginInfo) async {
