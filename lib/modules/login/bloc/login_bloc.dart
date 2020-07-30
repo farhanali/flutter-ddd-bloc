@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,49 +10,32 @@ import '../domain/login_repository.dart';
 import '../domain/user.dart';
 
 part 'login_bloc.freezed.dart';
-part 'login_event.dart';
 part 'login_state.dart';
 
 @injectable
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
+class LoginBloc extends Cubit<LoginState> {
   final LoginRepository _loginRepo;
   final AuthRepository _authRepo;
 
-  LoginBloc(this._loginRepo, this._authRepo);
+  LoginBloc(this._loginRepo, this._authRepo) : super(const LoginStateInitial());
 
-  @override
-  LoginState get initialState => const LoginState.initial();
-
-  @override
-  Stream<LoginState> mapEventToState(
-    LoginEvent event,
-  ) async* {
-    yield* _mapSigninToState(event);
-  }
-
-  Stream<LoginState> _mapSigninToState(LoginEvent event) async* {
-    yield const LoginState.inProgress();
-
-    LoginInfo info = event.info;
-    yield* info.validate().fold(
-          () => _doLogin(info),
-          _validationFailed,
+  void login(LoginInfo loginInfo) {
+    emit(const LoginState.inProgress());
+    loginInfo.validate().fold(
+          () => _doLogin(loginInfo),
+          (failure) => emit(LoginState.failed(failure)),
         );
   }
 
-  Stream<LoginState> _doLogin(LoginInfo input) async* {
+  void _doLogin(LoginInfo input) async {
     final loginResult = await _loginRepo.login(input);
 
-    yield loginResult.fold(
-      (failure) => LoginState.failed(failure),
+    loginResult.fold(
+      (failure) => emit(LoginState.failed(failure)),
       (user) {
         _authRepo.save(user);
-        return LoginState.success(user);
+        emit(LoginState.success(user));
       },
     );
-  }
-
-  Stream<LoginState> _validationFailed(LoginFailure failure) async* {
-    yield LoginState.failed(failure);
   }
 }

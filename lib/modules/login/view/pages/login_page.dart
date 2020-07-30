@@ -125,8 +125,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLoginTap() {
-    final input = LoginInfo(email: email, password: password);
-    context.bloc<LoginBloc>().add(LoginEvent.signin(input));
+    final loginInfo = LoginInfo(email: email, password: password);
+    context.bloc<LoginBloc>().login(loginInfo);
   }
 
   void _onLoginSuccess(User user) async {

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,38 +11,25 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 @injectable
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Cubit<AuthState> {
   final AuthRepository _authRepo;
 
-  AuthBloc(this._authRepo);
+  AuthBloc(this._authRepo) : super(const AuthState.loading());
 
-  @override
-  AuthState get initialState => const AuthState.loading();
-
-  @override
-  Stream<AuthState> mapEventToState(
-    AuthEvent event,
-  ) async* {
-    yield* event.when(
-      getUser: _mapGetUserToState,
-      logout: _mapLogoutToState,
-    );
-  }
-
-  Stream<AuthState> _mapGetUserToState() async* {
+  void getUser() async {
     final result = await _authRepo.read();
-    yield result.fold(
-      (failure) => const AuthState.guest(),
-      (user) => AuthState.user(user),
+    result.fold(
+      (failure) => emit(const AuthState.guest()),
+      (user) => emit(AuthState.user(user)),
     );
   }
 
-  Stream<AuthState> _mapLogoutToState() async* {
-    yield const AuthState.loading();
+  void logout() async {
+    emit(const AuthState.loading());
     final result = await _authRepo.delete();
-    yield result.fold(
-      (failure) => AuthState.error(failure),
-      (none) => const AuthState.guest(),
+    result.fold(
+      (failure) => emit(AuthState.error(failure)),
+      (none) => emit(const AuthState.guest()),
     );
   }
 }

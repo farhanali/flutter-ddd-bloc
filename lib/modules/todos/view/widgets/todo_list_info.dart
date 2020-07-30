@@ -32,7 +32,7 @@ class TodoListInfo extends StatelessWidget {
 
   Widget _buildIntroText(BuildContext context) {
     return BlocProvider.value(
-      value: context.bloc<AuthBloc>()..add(const AuthEvent.getUser()),
+      value: context.bloc<AuthBloc>()..getUser(),
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           String text = state.maybeWhen(

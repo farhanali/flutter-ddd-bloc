@@ -4,16 +4,16 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:flutter_clean_arch/common/api/api_client.dart';
 import 'package:flutter_clean_arch/common/api/api_config.dart';
-import 'package:flutter_clean_arch/modules/auth/bloc/auth_bloc.dart';
 import 'package:flutter_clean_arch/modules/auth/data/auth_repository_impl.dart';
 import 'package:flutter_clean_arch/modules/auth/domain/auth_repository.dart';
-import 'package:flutter_clean_arch/modules/login/bloc/login_bloc.dart';
-import 'package:flutter_clean_arch/modules/login/data/login_api.dart';
-import 'package:flutter_clean_arch/modules/login/data/login_repository_impl.dart';
 import 'package:flutter_clean_arch/modules/login/data/login_repository_mock.dart';
 import 'package:flutter_clean_arch/modules/login/domain/login_repository.dart';
+import 'package:flutter_clean_arch/common/api/api_client.dart';
+import 'package:flutter_clean_arch/modules/auth/bloc/auth_bloc.dart';
+import 'package:flutter_clean_arch/modules/login/data/login_api.dart';
+import 'package:flutter_clean_arch/modules/login/bloc/login_bloc.dart';
+import 'package:flutter_clean_arch/modules/login/data/login_repository_impl.dart';
 import 'package:get_it/get_it.dart';
 
 void $initGetIt(GetIt g, {String environment}) {

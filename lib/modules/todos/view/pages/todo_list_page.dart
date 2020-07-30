@@ -128,7 +128,7 @@ class _TodoListPageState extends State<TodoListPage>
   }
 
   void _onLogoutTap() {
-    context.bloc<AuthBloc>().add(const AuthEvent.logout());
+    context.bloc<AuthBloc>().logout();
   }
 
   void _onLogoutSuccess() async {
